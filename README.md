@@ -1,6 +1,6 @@
-# Bunk Bed World Landing Page
+# Bunkly Landing Page
 
-Static single-page landing page for **Bunk Bed World** in Cypress / northwest Houston, built with plain `HTML`, `CSS`, and `JavaScript`.
+Static single-page landing page for **Bunkly** in Cypress / northwest Houston, built with plain `HTML`, `CSS`, and `JavaScript`.
 
 ## What was built
 

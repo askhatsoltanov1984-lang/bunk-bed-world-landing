@@ -1,4 +1,4 @@
-// Bunk Bed World — interactions
+// Bunkly — interactions
 
 // Reveal on scroll
 const revealItems = document.querySelectorAll(".reveal");
