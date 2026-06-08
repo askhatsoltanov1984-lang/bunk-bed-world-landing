@@ -16,11 +16,11 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://placeholder.example.com/" />
     <meta property="og:image" content="https://placeholder.example.com/og-image.jpg" />
-    <meta name="theme-color" content="#11323d" />
+    <meta name="theme-color" content="#11243f" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -66,315 +66,336 @@
       }
     </script>
   </head>
-  <body>
-    <div class="site-shell">
-      <header class="topbar">
-        <div class="container nav-row">
-          <a class="brand" href="#top" aria-label="Bunk Bed World home">
-            <span class="brand-mark">BBW</span>
-            <span>
-              <strong>Bunk Bed World</strong>
-              <small>Cypress / Northwest Houston</small>
-            </span>
-          </a>
-          <nav class="nav-links" aria-label="Primary">
-            <a href="#categories">Shop</a>
-            <a href="#why-us">Why Us</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <div class="nav-cta">
-            <a class="button button-secondary" href="tel:+12815550100">Call Placeholder</a>
-            <a class="button button-primary" href="#contact">Get Store Info</a>
+  <body id="top">
+    <header class="topbar">
+      <div class="container nav-row">
+        <a class="brand" href="#top" aria-label="Bunk Bed World home">
+          <span class="brand-mark">BBW</span>
+          <span>
+            <strong>Bunk Bed World</strong>
+            <small>Cypress / Northwest Houston</small>
+          </span>
+        </a>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+          <a href="#categories">Shop</a>
+          <a href="#why-us">Why Us</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="button button-secondary" href="tel:+12815550100">Call Placeholder</a>
+          <a class="button button-primary" href="#contact">Get Store Info</a>
+          <button class="burger" id="burger" aria-label="Menu">☰</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">Furniture &amp; mattresses for growing families</span>
+            <h1>Make every bedroom feel more organized, comfortable, and worth coming home to.</h1>
+            <p class="hero-text">
+              From space-saving bunk beds to complete bedroom sets and better mattresses, Bunk Bed World
+              helps Cypress and northwest Houston families furnish smarter without the overwhelm.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary button-large" href="#contact">Plan Your Visit →</a>
+              <a class="button button-ghost button-large" href="tel:+12815550100">📞 Call Placeholder Number</a>
+            </div>
+            <ul class="hero-points" aria-label="Key benefits">
+              <li>Trusted local showroom experience</li>
+              <li>Delivery and setup options available</li>
+              <li>Financing available for qualified buyers</li>
+            </ul>
+            <div class="hero-trust">
+              <div>
+                <strong>Family-first showroom</strong>
+                <span>See bunk beds, trundles, lofts, and mattresses in person.</span>
+              </div>
+              <div>
+                <strong>Serving Cypress locally</strong>
+                <span>Convenient for northwest Houston, Tomball, Katy, and nearby neighborhoods.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card reveal delay-1">
+            <div class="showcase-card">
+              <span class="showcase-badge">This week’s in-store focus</span>
+              <h2>Complete kids room setups without piecing it together from five stores.</h2>
+              <p>
+                Explore bunk beds, matching dressers, mattresses, and space-saving pieces that work together
+                for busy family life.
+              </p>
+              <div class="showcase-list">
+                <div>
+                  <strong>Best for</strong>
+                  <span>Siblings, guest rooms, sleepovers, and compact homes</span>
+                </div>
+                <div>
+                  <strong>What shoppers love</strong>
+                  <span>Storage options, durable builds, and fast decision-making in-store</span>
+                </div>
+              </div>
+              <div class="showcase-offer">
+                <strong>Placeholder offer:</strong>
+                <span>Replace this with your current promotion, financing, or delivery offer.</span>
+              </div>
+            </div>
           </div>
         </div>
-      </header>
+      </section>
 
-      <main id="top">
-        <section class="hero">
-          <div class="container hero-grid">
-            <div class="hero-copy reveal">
-              <span class="eyebrow">Furniture & mattresses for growing families</span>
-              <h1>Make every bedroom feel more organized, comfortable, and worth coming home to.</h1>
-              <p class="hero-text">
-                From space-saving bunk beds to complete bedroom sets and better mattresses, Bunk Bed World
-                helps Cypress and northwest Houston families furnish smarter without the overwhelm.
+      <!-- BENEFITS -->
+      <section class="benefits section">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Why families choose a specialty store</span>
+            <h2>Less guesswork. Better fit. More confidence before you buy.</h2>
+          </div>
+          <div class="benefit-grid">
+            <article class="benefit-card reveal">
+              <h3>See real options side by side</h3>
+              <p>Compare bunk beds, mattresses, and room sets in person instead of relying on tiny product photos.</p>
+            </article>
+            <article class="benefit-card reveal delay-1">
+              <h3>Get advice that fits your space</h3>
+              <p>Find layouts that make sense for shared rooms, growing kids, guest rooms, and tighter floorplans.</p>
+            </article>
+            <article class="benefit-card reveal delay-2">
+              <h3>Make the purchase easier</h3>
+              <p>Financing, delivery, and a clear showroom experience reduce friction when you need to decide fast.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="categories section" id="categories">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Featured categories</span>
+            <h2>Shop the rooms and essentials families ask for most.</h2>
+          </div>
+          <div class="category-grid">
+            <article class="category-card reveal" onclick="selectInterest('Bunk bed')">
+              <span class="category-kicker">Top seller</span>
+              <h3>Bunk Beds &amp; Loft Beds</h3>
+              <p>Classic bunks, loft styles, trundles, storage-friendly options, and designs kids are excited about.</p>
+            </article>
+            <article class="category-card reveal delay-1" onclick="selectInterest('Kids bedroom set')">
+              <span class="category-kicker">Family favorite</span>
+              <h3>Kids Bedroom Sets</h3>
+              <p>Coordinate beds, dressers, nightstands, and storage pieces without mixing mismatched styles.</p>
+            </article>
+            <article class="category-card reveal delay-2" onclick="selectInterest('Mattress')">
+              <span class="category-kicker">Comfort upgrade</span>
+              <h3>Mattresses</h3>
+              <p>Supportive options for kids, teens, guest rooms, and primary bedrooms, with comfort you can test in-store.</p>
+            </article>
+            <article class="category-card reveal" onclick="selectInterest('Bedroom furniture')">
+              <span class="category-kicker">Space-saving</span>
+              <h3>Bedroom Furniture</h3>
+              <p>Dressers, chests, nightstands, and practical storage that help busy rooms stay functional.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- STAT BAND -->
+      <section class="section" style="padding-top:0">
+        <div class="container">
+          <div class="stat-band reveal">
+            <div class="item"><h3>1,000+</h3><p>Local families furnished</p></div>
+            <div class="item"><h3>4.9★</h3><p>Average showroom rating</p></div>
+            <div class="item"><h3>Same-week</h3><p>Delivery &amp; setup options</p></div>
+            <div class="item"><h3>0% APR*</h3><p>Financing for qualified buyers</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHY US -->
+      <section class="why-us section" id="why-us">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Why choose Bunk Bed World</span>
+            <h2>A local store experience built around trust, convenience, and family needs.</h2>
+          </div>
+          <div class="why-list">
+            <article class="why-item reveal">
+              <h3>Local and convenient</h3>
+              <p>Easy for Cypress and northwest Houston shoppers who want a nearby showroom instead of a long haul across town.</p>
+            </article>
+            <article class="why-item reveal delay-1">
+              <h3>Focused selection</h3>
+              <p>Not a warehouse of random items. A curated mix of bunk beds, mattresses, and bedroom furniture families actually need.</p>
+            </article>
+            <article class="why-item reveal delay-2">
+              <h3>Decision-friendly service</h3>
+              <p>Helpful guidance without the pressure. Enough expertise to help you choose confidently and move on with your day.</p>
+            </article>
+            <article class="why-item reveal">
+              <h3>Real purchase support</h3>
+              <p>Ask about financing, delivery, setup, and current offers so the practical details do not become a roadblock.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="testimonials section">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">What families say</span>
+            <h2>Real reassurance from local shoppers before they buy.</h2>
+          </div>
+          <div class="testimonial-grid">
+            <blockquote class="testimonial-card reveal">
+              <p>
+                “We came in looking for a bunk bed for our kids and ended up finding a full room setup that
+                actually fit the room. The process was much easier than shopping online.”
               </p>
-              <div class="hero-actions">
-                <a class="button button-primary button-large" href="#contact">Plan Your Visit</a>
-                <a class="button button-ghost button-large" href="tel:+12815550100">Call Placeholder Number</a>
-              </div>
-              <ul class="hero-points" aria-label="Key benefits">
-                <li>Trusted local showroom experience</li>
-                <li>Delivery and setup options available</li>
-                <li>Financing available for qualified buyers</li>
-              </ul>
-              <div class="hero-trust">
-                <div>
-                  <strong>Family-first showroom</strong>
-                  <span>See bunk beds, trundles, lofts, and mattresses in person.</span>
-                </div>
-                <div>
-                  <strong>Serving Cypress locally</strong>
-                  <span>Convenient for northwest Houston, Tomball, Katy, and nearby neighborhoods.</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="hero-card reveal delay-1">
-              <div class="showcase-card">
-                <span class="showcase-badge">This week’s in-store focus</span>
-                <h2>Complete kids room setups without piecing it together from five stores.</h2>
-                <p>
-                  Explore bunk beds, matching dressers, mattresses, and space-saving pieces that work together
-                  for busy family life.
-                </p>
-                <div class="showcase-list">
-                  <div>
-                    <strong>Best for</strong>
-                    <span>Siblings, guest rooms, sleepovers, and compact homes</span>
-                  </div>
-                  <div>
-                    <strong>What shoppers love</strong>
-                    <span>Storage options, durable builds, and fast decision-making in-store</span>
-                  </div>
-                </div>
-                <div class="showcase-offer">
-                  <strong>Placeholder offer:</strong>
-                  <span>Ask Aziz to replace this with your current promotion, financing, or delivery offer.</span>
-                </div>
-              </div>
-            </div>
+              <footer>Placeholder testimonial — Cypress parent</footer>
+            </blockquote>
+            <blockquote class="testimonial-card reveal delay-1">
+              <p>
+                “The showroom saved us time. We could compare quality, ask questions, and make a decision in
+                one visit without second-guessing everything.”
+              </p>
+              <footer>Placeholder testimonial — Northwest Houston homeowner</footer>
+            </blockquote>
+            <blockquote class="testimonial-card reveal delay-2">
+              <p>
+                “Delivery and financing options made a big difference for us. It felt like a family store that
+                understood what we needed.”
+              </p>
+              <footer>Placeholder testimonial — Tomball shopper</footer>
+            </blockquote>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="benefits section">
-          <div class="container">
-            <div class="section-heading reveal">
-              <span class="eyebrow">Why families choose a specialty store</span>
-              <h2>Less guesswork. Better fit. More confidence before you buy.</h2>
-            </div>
-            <div class="benefit-grid">
-              <article class="benefit-card reveal">
-                <h3>See real options side by side</h3>
-                <p>Compare bunk beds, mattresses, and room sets in person instead of relying on tiny product photos.</p>
-              </article>
-              <article class="benefit-card reveal delay-1">
-                <h3>Get advice that fits your space</h3>
-                <p>Find layouts that make sense for shared rooms, growing kids, guest rooms, and tighter floorplans.</p>
-              </article>
-              <article class="benefit-card reveal delay-2">
-                <h3>Make the purchase easier</h3>
-                <p>Financing, delivery, and a clear showroom experience reduce friction when you need to decide fast.</p>
-              </article>
-            </div>
+      <!-- SUPPORT + CONTACT -->
+      <section class="support section">
+        <div class="container support-grid">
+          <div class="support-panel reveal">
+            <span class="eyebrow">Financing, delivery, and help</span>
+            <h2>Reduce the friction that keeps shoppers from taking the next step.</h2>
+            <ul class="check-list">
+              <li>Financing options available for qualified customers</li>
+              <li>Ask about delivery windows and setup availability</li>
+              <li>Friendly guidance for room sizing and product pairing</li>
+              <li>Helpful for first apartments, shared kids rooms, and guest setups</li>
+            </ul>
           </div>
-        </section>
-
-        <section class="categories section" id="categories">
-          <div class="container">
-            <div class="section-heading reveal">
-              <span class="eyebrow">Featured categories</span>
-              <h2>Shop the rooms and essentials families ask for most.</h2>
+          <div class="contact-card reveal delay-1" id="contact">
+            <div class="contact-card-header">
+              <span class="eyebrow">Quick contact</span>
+              <h2>Get directions, hours, or current offers.</h2>
+              <p>Tell us what you’re shopping for and we’ll reach out fast.</p>
             </div>
-            <div class="category-grid">
-              <article class="category-card reveal">
-                <span class="category-kicker">Top seller</span>
-                <h3>Bunk Beds & Loft Beds</h3>
-                <p>Classic bunks, loft styles, trundles, storage-friendly options, and designs kids are excited about.</p>
-              </article>
-              <article class="category-card reveal delay-1">
-                <span class="category-kicker">Family favorite</span>
-                <h3>Kids Bedroom Sets</h3>
-                <p>Coordinate beds, dressers, nightstands, and storage pieces without mixing mismatched styles.</p>
-              </article>
-              <article class="category-card reveal delay-2">
-                <span class="category-kicker">Comfort upgrade</span>
-                <h3>Mattresses</h3>
-                <p>Supportive options for kids, teens, guest rooms, and primary bedrooms, with comfort you can test in-store.</p>
-              </article>
-              <article class="category-card reveal">
-                <span class="category-kicker">Space-saving</span>
-                <h3>Bedroom Furniture</h3>
-                <p>Dressers, chests, nightstands, and practical storage that help busy rooms stay functional.</p>
-              </article>
-            </div>
+            <form class="lead-form">
+              <label>
+                <span>Name</span>
+                <input type="text" name="name" placeholder="Your name" required />
+              </label>
+              <label>
+                <span>Phone or email</span>
+                <input type="text" name="contact" placeholder="Best way to reach you" required />
+              </label>
+              <label>
+                <span>What are you shopping for?</span>
+                <select name="interest">
+                  <option>Bunk bed</option>
+                  <option>Kids bedroom set</option>
+                  <option>Mattress</option>
+                  <option>Bedroom furniture</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+              <label>
+                <span>Message</span>
+                <textarea name="message" rows="3" placeholder="Tell us what room or furniture you need."></textarea>
+              </label>
+              <button class="button button-primary button-large" type="submit">Request Store Info</button>
+              <p class="form-note">Placeholder phone: <strong>(281) 555-0100</strong> · <strong>12345 Placeholder Rd, Cypress, TX 77429</strong></p>
+            </form>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="why-us section" id="why-us">
-          <div class="container why-grid">
-            <div class="section-heading reveal">
-              <span class="eyebrow">Why choose Bunk Bed World</span>
-              <h2>A local store experience built around trust, convenience, and family needs.</h2>
-            </div>
-            <div class="why-list">
-              <article class="why-item reveal">
-                <h3>Local and convenient</h3>
-                <p>Easy for Cypress and northwest Houston shoppers who want a nearby showroom instead of a long haul across town.</p>
-              </article>
-              <article class="why-item reveal delay-1">
-                <h3>Focused selection</h3>
-                <p>Not a warehouse of random items. A curated mix of bunk beds, mattresses, and bedroom furniture families actually need.</p>
-              </article>
-              <article class="why-item reveal delay-2">
-                <h3>Decision-friendly service</h3>
-                <p>Helpful guidance without the pressure. Enough expertise to help you choose confidently and move on with your day.</p>
-              </article>
-              <article class="why-item reveal">
-                <h3>Real purchase support</h3>
-                <p>Ask about financing, delivery, setup, and current offers so the practical details do not become a roadblock.</p>
-              </article>
-            </div>
+      <!-- FAQ -->
+      <section class="faq section" id="faq">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">FAQ</span>
+            <h2>Answers to the questions families ask most.</h2>
           </div>
-        </section>
-
-        <section class="testimonials section">
-          <div class="container">
-            <div class="section-heading reveal">
-              <span class="eyebrow">Social proof</span>
-              <h2>Families want reassurance before they buy. Give them a reason to trust the trip.</h2>
-            </div>
-            <div class="testimonial-grid">
-              <blockquote class="testimonial-card reveal">
-                <p>
-                  “We came in looking for a bunk bed for our kids and ended up finding a full room setup that
-                  actually fit the room. The process was much easier than shopping online.”
-                </p>
-                <footer>Placeholder testimonial, Cypress parent</footer>
-              </blockquote>
-              <blockquote class="testimonial-card reveal delay-1">
-                <p>
-                  “The showroom saved us time. We could compare quality, ask questions, and make a decision in
-                  one visit without second-guessing everything.”
-                </p>
-                <footer>Placeholder testimonial, Northwest Houston homeowner</footer>
-              </blockquote>
-              <blockquote class="testimonial-card reveal delay-2">
-                <p>
-                  “Delivery and financing options made a big difference for us. It felt like a family store that
-                  understood what we needed.”
-                </p>
-                <footer>Placeholder testimonial, Tomball shopper</footer>
-              </blockquote>
-            </div>
+          <div class="faq-list">
+            <details class="faq-item reveal">
+              <summary>Do you only sell bunk beds?</summary>
+              <p>No. Bunk Bed World features bunk beds, loft beds, kids furniture, bedroom sets, and mattresses for different room types and ages.</p>
+            </details>
+            <details class="faq-item reveal delay-1">
+              <summary>Can I see products in person before buying?</summary>
+              <p>Yes. We’re built around an in-person showroom experience so you can compare styles, sizing, and comfort before deciding.</p>
+            </details>
+            <details class="faq-item reveal delay-2">
+              <summary>Do you offer financing or delivery?</summary>
+              <p>Yes — financing and delivery are available. Replace the exact financing terms, delivery area details, and setup availability before launch.</p>
+            </details>
+            <details class="faq-item reveal">
+              <summary>What areas do you serve?</summary>
+              <p>We serve Cypress and northwest Houston, with nearby relevance for Tomball, Jersey Village, Katy, and surrounding communities.</p>
+            </details>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="support section">
-          <div class="container support-grid">
-            <div class="support-panel reveal">
-              <span class="eyebrow">Financing, delivery, and help</span>
-              <h2>Reduce the friction that keeps shoppers from taking the next step.</h2>
-              <ul class="check-list">
-                <li>Financing options available for qualified customers</li>
-                <li>Ask about delivery windows and setup availability</li>
-                <li>Friendly guidance for room sizing and product pairing</li>
-                <li>Helpful for first apartments, shared kids rooms, and guest setups</li>
-              </ul>
-            </div>
-            <div class="contact-card reveal delay-1" id="contact">
-              <div class="contact-card-header">
-                <span class="eyebrow">Quick contact</span>
-                <h2>Get directions, hours, or current offers.</h2>
-                <p>Polished UI only. This form is nonfunctional and ready to be wired later.</p>
-              </div>
-              <form class="lead-form">
-                <label>
-                  <span>Name</span>
-                  <input type="text" name="name" placeholder="Your name" />
-                </label>
-                <label>
-                  <span>Phone or email</span>
-                  <input type="text" name="contact" placeholder="Best way to reach you" />
-                </label>
-                <label>
-                  <span>What are you shopping for?</span>
-                  <select name="interest">
-                    <option>Bunk bed</option>
-                    <option>Kids bedroom set</option>
-                    <option>Mattress</option>
-                    <option>Bedroom furniture</option>
-                    <option>Not sure yet</option>
-                  </select>
-                </label>
-                <label>
-                  <span>Message</span>
-                  <textarea name="message" rows="4" placeholder="Tell us what room or furniture you need."></textarea>
-                </label>
-                <button class="button button-primary button-large" type="submit">Request Store Info</button>
-                <p class="form-note">Placeholder phone: <strong>(281) 555-0100</strong> | Placeholder address: <strong>12345 Placeholder Rd, Cypress, TX 77429</strong></p>
-              </form>
-            </div>
-          </div>
-        </section>
-
-        <section class="faq section" id="faq">
-          <div class="container">
-            <div class="section-heading reveal">
-              <span class="eyebrow">FAQ</span>
-              <h2>Answer the most common objections before they slow down the sale.</h2>
-            </div>
-            <div class="faq-list">
-              <details class="faq-item reveal">
-                <summary>Do you only sell bunk beds?</summary>
-                <p>No. Bunk Bed World can feature bunk beds, loft beds, kids furniture, bedroom sets, and mattresses for different room types and ages.</p>
-              </details>
-              <details class="faq-item reveal delay-1">
-                <summary>Can I see products in person before buying?</summary>
-                <p>Yes. The page is positioned around an in-person showroom experience so shoppers can compare styles, sizing, and comfort before making a decision.</p>
-              </details>
-              <details class="faq-item reveal delay-2">
-                <summary>Do you offer financing or delivery?</summary>
-                <p>Yes, this page includes both as placeholder offers. Aziz should replace the exact financing terms, delivery area details, and setup availability.</p>
-              </details>
-              <details class="faq-item reveal">
-                <summary>What areas do you serve?</summary>
-                <p>The copy is written for Cypress and northwest Houston, with nearby relevance for Tomball, Jersey Village, Katy, and surrounding communities.</p>
-              </details>
-            </div>
-          </div>
-        </section>
-
-        <section class="final-cta section">
-          <div class="container final-cta-card reveal">
+      <!-- FINAL CTA -->
+      <section class="final-cta section">
+        <div class="container">
+          <div class="final-cta-card reveal">
             <span class="eyebrow">Ready to make the room work better?</span>
             <h2>Visit Bunk Bed World and make one trip that solves the bedroom decision.</h2>
             <p>
-              If you want a furniture store that feels more personal than a giant chain and more reliable than
-              guessing online, this is the call to action. Replace the placeholder contact details and publish.
+              A furniture store that feels more personal than a giant chain and more reliable than guessing
+              online. Replace the placeholder contact details and publish.
             </p>
-            <div class="hero-actions">
-              <a class="button button-primary button-large" href="tel:+12815550100">Call Placeholder Number</a>
+            <div class="hero-actions" style="justify-content:center">
+              <a class="button button-primary button-large" href="tel:+12815550100">📞 Call Placeholder Number</a>
               <a class="button button-secondary button-large" href="#contact">Get Store Info</a>
             </div>
           </div>
-        </section>
-      </main>
-
-      <footer class="footer">
-        <div class="container footer-grid">
-          <div>
-            <strong>Bunk Bed World</strong>
-            <p>Premium, family-friendly furniture and mattress shopping for Cypress and northwest Houston.</p>
-          </div>
-          <div>
-            <strong>Placeholder contact</strong>
-            <p>Phone: (281) 555-0100</p>
-            <p>Address: 12345 Placeholder Rd, Cypress, TX 77429</p>
-          </div>
-          <div>
-            <strong>Built for local conversion</strong>
-            <p>Replace placeholders for offers, hours, business URL, phone, address, and testimonials before launch.</p>
-          </div>
         </div>
-      </footer>
+      </section>
+    </main>
 
-      <a class="sticky-cta" href="tel:+12815550100" aria-label="Call Bunk Bed World">
-        <span>Call Placeholder</span>
-        <strong>(281) 555-0100</strong>
-      </a>
-    </div>
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <strong>Bunk Bed World</strong>
+          <p>Premium, family-friendly furniture and mattress shopping for Cypress and northwest Houston.</p>
+        </div>
+        <div>
+          <strong>Placeholder contact</strong>
+          <p>Phone: (281) 555-0100</p>
+          <p>Address: 12345 Placeholder Rd, Cypress, TX 77429</p>
+        </div>
+        <div>
+          <strong>Before launch</strong>
+          <p>Replace placeholders for offers, hours, business URL, phone, address, and testimonials.</p>
+        </div>
+      </div>
+    </footer>
+
+    <a class="sticky-cta" href="tel:+12815550100" aria-label="Call Bunk Bed World">
+      <span>📞 Call us</span>
+      <strong>(281) 555-0100</strong>
+    </a>
 
     <script src="./script.js"></script>
   </body>
