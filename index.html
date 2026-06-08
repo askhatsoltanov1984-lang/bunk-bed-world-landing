@@ -1,402 +1,404 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bunkly | Bunk Beds, Bedroom Furniture & Mattresses in Cypress, TX</title>
-    <meta
-      name="description"
-      content="Shop bunk beds, kids bedroom sets, mattresses, and family-friendly furniture at Bunkly in Cypress, serving northwest Houston with trusted service, delivery, and financing options."
-    />
-    <meta property="og:title" content="Bunkly | Furniture & Mattresses in Cypress, TX" />
-    <meta
-      property="og:description"
-      content="A polished, family-focused furniture destination for bunk beds, bedroom sets, and mattresses in Cypress and northwest Houston."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://placeholder.example.com/" />
-    <meta property="og:image" content="https://placeholder.example.com/og-image.jpg" />
-    <meta name="theme-color" content="#11243f" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FurnitureStore",
-        "name": "Bunkly",
-        "image": "https://placeholder.example.com/og-image.jpg",
-        "url": "https://placeholder.example.com/",
-        "telephone": "(281) 555-0100",
-        "priceRange": "$$",
-        "description": "Bunkly is a Cypress-area furniture and mattress store serving northwest Houston families shopping for bunk beds, bedroom sets, mattresses, and kids room furniture.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "12345 Placeholder Rd",
-          "addressLocality": "Cypress",
-          "addressRegion": "TX",
-          "postalCode": "77429",
-          "addressCountry": "US"
-        },
-        "areaServed": [
-          "Cypress, TX",
-          "Northwest Houston, TX",
-          "Jersey Village, TX",
-          "Tomball, TX",
-          "Katy, TX"
-        ],
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-            "opens": "10:00",
-            "closes": "19:00"
-          },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Sunday",
-            "opens": "12:00",
-            "closes": "17:00"
-          }
-        ]
-      }
-    </script>
-  </head>
-  <body id="top">
-    <header class="topbar">
-      <div class="container nav-row">
-        <a class="brand" href="#top" aria-label="Bunkly home">
-          <span class="brand-mark">BLY</span>
-          <span>
-            <strong>Bunkly</strong>
-            <small>Cypress / Northwest Houston</small>
-          </span>
-        </a>
-        <nav class="nav-links" id="navLinks" aria-label="Primary">
-          <a href="#categories">Shop</a>
-          <a href="#why-us">Why Us</a>
-          <a href="#faq">FAQ</a>
-          <a href="#contact">Contact</a>
-        </nav>
-        <div class="nav-cta">
-          <a class="button button-secondary" href="tel:+12815550100">Call Placeholder</a>
-          <a class="button button-primary" href="#contact">Get Store Info</a>
-          <button class="burger" id="burger" aria-label="Menu">☰</button>
-        </div>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HomeHero — Trusted Local Home Services in Houston</title>
+<meta name="description" content="Book vetted local pros for appliance repair, electrical, home decoration, plumbing, HVAC and handyman work. Free quotes, licensed & insured, same-day service." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0f1b3d;
+    --blue:#2563eb;
+    --blue-dark:#1d4ed8;
+    --accent:#ff7a3c;
+    --bg:#f6f8fc;
+    --card:#ffffff;
+    --text:#1a2238;
+    --muted:#5b6478;
+    --line:#e6eaf2;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(15,27,61,.08);
+    --shadow-lg:0 20px 50px rgba(15,27,61,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{text-decoration:none;color:inherit}
+  img{max-width:100%}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;padding:14px 24px;border-radius:999px;border:0;cursor:pointer;transition:.2s;white-space:nowrap}
+  .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 20px rgba(255,122,60,.35)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(255,122,60,.45)}
+  .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+  .btn-ghost:hover{background:rgba(255,255,255,.22)}
+  .btn-blue{background:var(--blue);color:#fff}
+  .btn-blue:hover{background:var(--blue-dark);transform:translateY(-2px)}
+  .eyebrow{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);background:#eaf1ff;padding:6px 14px;border-radius:999px;margin-bottom:16px}
+
+  /* HEADER */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:var(--navy)}
+  .logo .mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--accent));display:grid;place-items:center;color:#fff;font-size:20px}
+  .menu{display:flex;align-items:center;gap:28px}
+  .menu a{font-weight:600;font-size:15px;color:var(--muted)}
+  .menu a:hover{color:var(--navy)}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .nav-phone{font-weight:800;color:var(--navy);font-size:16px}
+  .burger{display:none;background:none;border:0;cursor:pointer;font-size:26px;color:var(--navy)}
+
+  /* HERO */
+  .hero{position:relative;background:radial-gradient(1200px 500px at 80% -10%,#1e3a8a 0%,var(--navy) 55%);color:#fff;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-120px;bottom:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(255,122,60,.35),transparent 65%);filter:blur(10px)}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:78px 0}
+  .hero h1{font-size:50px;line-height:1.08;font-weight:800;letter-spacing:-.02em}
+  .hero h1 span{color:var(--accent)}
+  .hero p.sub{margin-top:20px;font-size:19px;color:#c9d3ee;max-width:520px}
+  .hero-cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+  .trust{display:flex;gap:26px;margin-top:36px;flex-wrap:wrap}
+  .trust div{display:flex;align-items:center;gap:9px;font-size:14px;font-weight:600;color:#dbe3f7}
+  .trust svg{flex:0 0 auto}
+
+  /* HERO FORM CARD */
+  .lead-card{background:var(--card);color:var(--text);border-radius:24px;padding:30px;box-shadow:var(--shadow-lg)}
+  .lead-card h3{font-size:22px;font-weight:800}
+  .lead-card .small{color:var(--muted);font-size:14px;margin:6px 0 20px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:var(--navy)}
+  .field input,.field select,.field textarea{width:100%;padding:13px 14px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;font-size:15px;background:#fbfcfe;transition:.15s}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:0;border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.12)}
+  .lead-card .btn{width:100%;justify-content:center;margin-top:6px}
+  .lead-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px}
+
+  /* SECTION */
+  section.block{padding:84px 0}
+  .head{text-align:center;max-width:680px;margin:0 auto 50px}
+  .head h2{font-size:38px;font-weight:800;letter-spacing:-.02em;line-height:1.15}
+  .head p{margin-top:14px;color:var(--muted);font-size:17px}
+
+  /* SERVICES */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .svc{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;transition:.2s;cursor:pointer}
+  .svc:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:transparent}
+  .svc .ic{width:56px;height:56px;border-radius:14px;background:#eaf1ff;display:grid;place-items:center;margin-bottom:18px;color:var(--blue)}
+  .svc h4{font-size:19px;font-weight:700;margin-bottom:8px}
+  .svc p{color:var(--muted);font-size:15px}
+  .svc .more{display:inline-block;margin-top:14px;font-weight:700;font-size:14px;color:var(--blue)}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+  .step{text-align:center;padding:12px}
+  .step .n{width:64px;height:64px;margin:0 auto 18px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--accent));color:#fff;display:grid;place-items:center;font-size:26px;font-weight:800;box-shadow:var(--shadow)}
+  .step h4{font-size:19px;margin-bottom:8px}
+  .step p{color:var(--muted);font-size:15px;max-width:300px;margin:0 auto}
+
+  /* WHY band */
+  .why{background:var(--navy);color:#fff;border-radius:28px;padding:54px;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+  .why .item h3{font-size:34px;color:var(--accent);font-weight:800}
+  .why .item p{color:#c4cde6;font-size:15px;margin-top:4px}
+
+  /* TESTIMONIALS */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .q{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .stars{color:#ffb01f;font-size:18px;letter-spacing:2px}
+  .q p{margin:14px 0;font-size:15px;color:#33405e}
+  .q .who{display:flex;align-items:center;gap:12px}
+  .q .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--accent));color:#fff;display:grid;place-items:center;font-weight:700}
+  .q .who b{font-size:15px}
+  .q .who span{display:block;font-size:13px;color:var(--muted)}
+
+  /* CTA strip */
+  .cta-strip{background:linear-gradient(135deg,var(--blue),var(--accent));color:#fff;border-radius:28px;padding:54px;text-align:center}
+  .cta-strip h2{font-size:34px;font-weight:800}
+  .cta-strip p{margin:12px auto 26px;max-width:560px;color:#eef3ff}
+  .cta-strip .btn{background:#fff;color:var(--navy)}
+
+  /* FOOTER */
+  footer{background:var(--navy);color:#aeb9d6;padding:60px 0 30px;margin-top:84px}
+  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
+  footer h5{color:#fff;font-size:15px;margin-bottom:16px;font-weight:700}
+  footer a{display:block;color:#aeb9d6;font-size:14px;margin-bottom:10px}
+  footer a:hover{color:#fff}
+  .foot-logo{color:#fff;font-weight:800;font-size:20px;display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .copy{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* FLOATING CALL */
+  .floating{position:fixed;right:20px;bottom:20px;z-index:60;display:none}
+  .floating a{display:flex;align-items:center;gap:9px;background:var(--accent);color:#fff;font-weight:800;padding:14px 22px;border-radius:999px;box-shadow:0 12px 30px rgba(255,122,60,.5)}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;padding:54px 0}
+    .hero h1{font-size:38px}
+    .grid,.steps,.quotes{grid-template-columns:1fr 1fr}
+    .why{grid-template-columns:1fr 1fr;padding:40px}
+    .fgrid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:640px){
+    .menu,.nav-phone{display:none}
+    .burger{display:block}
+    .menu.open{display:flex;position:absolute;top:72px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 22px;border-bottom:1px solid var(--line);gap:16px}
+    .hero h1{font-size:32px}
+    .head h2{font-size:28px}
+    .grid,.steps,.quotes,.why,.fgrid{grid-template-columns:1fr}
+    .why,.cta-strip,.why{padding:34px 24px}
+    section.block{padding:60px 0}
+    .floating{display:block}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap nav">
+    <a href="#" class="logo"><span class="mark">⚡</span> HomeHero</a>
+    <nav class="menu" id="menu">
+      <a href="#services">Services</a>
+      <a href="#how">How It Works</a>
+      <a href="#why">Why Us</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#quote">Get a Quote</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+18329999999" class="nav-phone">(832) 999-9999</a>
+      <a href="#quote" class="btn btn-blue">Free Quote</a>
+      <button class="burger" id="burger" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow" style="background:rgba(255,255,255,.12);color:#fff">Houston &amp; Surrounding Areas</span>
+      <h1>Trusted Local Pros for <span>Every Home Job</span></h1>
+      <p class="sub">Appliance repair, electrical, home decoration and more — vetted, licensed professionals at your door. Get a free quote in minutes.</p>
+      <div class="hero-cta">
+        <a href="#quote" class="btn btn-primary">Get My Free Quote →</a>
+        <a href="tel:+18329999999" class="btn btn-ghost">📞 Call Now</a>
       </div>
-    </header>
-
-    <main>
-      <!-- HERO -->
-      <section class="hero">
-        <div class="container hero-grid">
-          <div class="hero-copy reveal">
-            <span class="eyebrow">Furniture &amp; mattresses for growing families</span>
-            <h1>Make every bedroom feel more organized, comfortable, and worth coming home to.</h1>
-            <p class="hero-text">
-              From space-saving bunk beds to complete bedroom sets and better mattresses, Bunkly
-              helps Cypress and northwest Houston families furnish smarter without the overwhelm.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary button-large" href="#contact">Plan Your Visit →</a>
-              <a class="button button-ghost button-large" href="tel:+12815550100">📞 Call Placeholder Number</a>
-            </div>
-            <ul class="hero-points" aria-label="Key benefits">
-              <li>Trusted local showroom experience</li>
-              <li>Delivery and setup options available</li>
-              <li>Financing available for qualified buyers</li>
-            </ul>
-            <div class="hero-trust">
-              <div>
-                <strong>Family-first showroom</strong>
-                <span>See bunk beds, trundles, lofts, and mattresses in person.</span>
-              </div>
-              <div>
-                <strong>Serving Cypress locally</strong>
-                <span>Convenient for northwest Houston, Tomball, Katy, and nearby neighborhoods.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="hero-card reveal delay-1">
-            <div class="showcase-card">
-              <span class="showcase-badge">This week’s in-store focus</span>
-              <h2>Complete kids room setups without piecing it together from five stores.</h2>
-              <p>
-                Explore bunk beds, matching dressers, mattresses, and space-saving pieces that work together
-                for busy family life.
-              </p>
-              <div class="showcase-list">
-                <div>
-                  <strong>Best for</strong>
-                  <span>Siblings, guest rooms, sleepovers, and compact homes</span>
-                </div>
-                <div>
-                  <strong>What shoppers love</strong>
-                  <span>Storage options, durable builds, and fast decision-making in-store</span>
-                </div>
-              </div>
-              <div class="showcase-offer">
-                <strong>Placeholder offer:</strong>
-                <span>Replace this with your current promotion, financing, or delivery offer.</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- BENEFITS -->
-      <section class="benefits section">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Why families choose a specialty store</span>
-            <h2>Less guesswork. Better fit. More confidence before you buy.</h2>
-          </div>
-          <div class="benefit-grid">
-            <article class="benefit-card reveal">
-              <h3>See real options side by side</h3>
-              <p>Compare bunk beds, mattresses, and room sets in person instead of relying on tiny product photos.</p>
-            </article>
-            <article class="benefit-card reveal delay-1">
-              <h3>Get advice that fits your space</h3>
-              <p>Find layouts that make sense for shared rooms, growing kids, guest rooms, and tighter floorplans.</p>
-            </article>
-            <article class="benefit-card reveal delay-2">
-              <h3>Make the purchase easier</h3>
-              <p>Financing, delivery, and a clear showroom experience reduce friction when you need to decide fast.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- CATEGORIES -->
-      <section class="categories section" id="categories">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Featured categories</span>
-            <h2>Shop the rooms and essentials families ask for most.</h2>
-          </div>
-          <div class="category-grid">
-            <article class="category-card reveal" onclick="selectInterest('Bunk bed')">
-              <span class="category-kicker">Top seller</span>
-              <h3>Bunk Beds &amp; Loft Beds</h3>
-              <p>Classic bunks, loft styles, trundles, storage-friendly options, and designs kids are excited about.</p>
-            </article>
-            <article class="category-card reveal delay-1" onclick="selectInterest('Kids bedroom set')">
-              <span class="category-kicker">Family favorite</span>
-              <h3>Kids Bedroom Sets</h3>
-              <p>Coordinate beds, dressers, nightstands, and storage pieces without mixing mismatched styles.</p>
-            </article>
-            <article class="category-card reveal delay-2" onclick="selectInterest('Mattress')">
-              <span class="category-kicker">Comfort upgrade</span>
-              <h3>Mattresses</h3>
-              <p>Supportive options for kids, teens, guest rooms, and primary bedrooms, with comfort you can test in-store.</p>
-            </article>
-            <article class="category-card reveal" onclick="selectInterest('Bedroom furniture')">
-              <span class="category-kicker">Space-saving</span>
-              <h3>Bedroom Furniture</h3>
-              <p>Dressers, chests, nightstands, and practical storage that help busy rooms stay functional.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- STAT BAND -->
-      <section class="section" style="padding-top:0">
-        <div class="container">
-          <div class="stat-band reveal">
-            <div class="item"><h3>1,000+</h3><p>Local families furnished</p></div>
-            <div class="item"><h3>4.9★</h3><p>Average showroom rating</p></div>
-            <div class="item"><h3>Same-week</h3><p>Delivery &amp; setup options</p></div>
-            <div class="item"><h3>0% APR*</h3><p>Financing for qualified buyers</p></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- WHY US -->
-      <section class="why-us section" id="why-us">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">Why choose Bunkly</span>
-            <h2>A local store experience built around trust, convenience, and family needs.</h2>
-          </div>
-          <div class="why-list">
-            <article class="why-item reveal">
-              <h3>Local and convenient</h3>
-              <p>Easy for Cypress and northwest Houston shoppers who want a nearby showroom instead of a long haul across town.</p>
-            </article>
-            <article class="why-item reveal delay-1">
-              <h3>Focused selection</h3>
-              <p>Not a warehouse of random items. A curated mix of bunk beds, mattresses, and bedroom furniture families actually need.</p>
-            </article>
-            <article class="why-item reveal delay-2">
-              <h3>Decision-friendly service</h3>
-              <p>Helpful guidance without the pressure. Enough expertise to help you choose confidently and move on with your day.</p>
-            </article>
-            <article class="why-item reveal">
-              <h3>Real purchase support</h3>
-              <p>Ask about financing, delivery, setup, and current offers so the practical details do not become a roadblock.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- TESTIMONIALS -->
-      <section class="testimonials section">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">What families say</span>
-            <h2>Real reassurance from local shoppers before they buy.</h2>
-          </div>
-          <div class="testimonial-grid">
-            <blockquote class="testimonial-card reveal">
-              <p>
-                “We came in looking for a bunk bed for our kids and ended up finding a full room setup that
-                actually fit the room. The process was much easier than shopping online.”
-              </p>
-              <footer>Placeholder testimonial — Cypress parent</footer>
-            </blockquote>
-            <blockquote class="testimonial-card reveal delay-1">
-              <p>
-                “The showroom saved us time. We could compare quality, ask questions, and make a decision in
-                one visit without second-guessing everything.”
-              </p>
-              <footer>Placeholder testimonial — Northwest Houston homeowner</footer>
-            </blockquote>
-            <blockquote class="testimonial-card reveal delay-2">
-              <p>
-                “Delivery and financing options made a big difference for us. It felt like a family store that
-                understood what we needed.”
-              </p>
-              <footer>Placeholder testimonial — Tomball shopper</footer>
-            </blockquote>
-          </div>
-        </div>
-      </section>
-
-      <!-- SUPPORT + CONTACT -->
-      <section class="support section">
-        <div class="container support-grid">
-          <div class="support-panel reveal">
-            <span class="eyebrow">Financing, delivery, and help</span>
-            <h2>Reduce the friction that keeps shoppers from taking the next step.</h2>
-            <ul class="check-list">
-              <li>Financing options available for qualified customers</li>
-              <li>Ask about delivery windows and setup availability</li>
-              <li>Friendly guidance for room sizing and product pairing</li>
-              <li>Helpful for first apartments, shared kids rooms, and guest setups</li>
-            </ul>
-          </div>
-          <div class="contact-card reveal delay-1" id="contact">
-            <div class="contact-card-header">
-              <span class="eyebrow">Quick contact</span>
-              <h2>Get directions, hours, or current offers.</h2>
-              <p>Tell us what you’re shopping for and we’ll reach out fast.</p>
-            </div>
-            <form class="lead-form">
-              <label>
-                <span>Name</span>
-                <input type="text" name="name" placeholder="Your name" required />
-              </label>
-              <label>
-                <span>Phone or email</span>
-                <input type="text" name="contact" placeholder="Best way to reach you" required />
-              </label>
-              <label>
-                <span>What are you shopping for?</span>
-                <select name="interest">
-                  <option>Bunk bed</option>
-                  <option>Kids bedroom set</option>
-                  <option>Mattress</option>
-                  <option>Bedroom furniture</option>
-                  <option>Not sure yet</option>
-                </select>
-              </label>
-              <label>
-                <span>Message</span>
-                <textarea name="message" rows="3" placeholder="Tell us what room or furniture you need."></textarea>
-              </label>
-              <button class="button button-primary button-large" type="submit">Request Store Info</button>
-              <p class="form-note">Placeholder phone: <strong>(281) 555-0100</strong> · <strong>12345 Placeholder Rd, Cypress, TX 77429</strong></p>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section class="faq section" id="faq">
-        <div class="container">
-          <div class="section-heading reveal">
-            <span class="eyebrow">FAQ</span>
-            <h2>Answers to the questions families ask most.</h2>
-          </div>
-          <div class="faq-list">
-            <details class="faq-item reveal">
-              <summary>Do you only sell bunk beds?</summary>
-              <p>No. Bunkly features bunk beds, loft beds, kids furniture, bedroom sets, and mattresses for different room types and ages.</p>
-            </details>
-            <details class="faq-item reveal delay-1">
-              <summary>Can I see products in person before buying?</summary>
-              <p>Yes. We’re built around an in-person showroom experience so you can compare styles, sizing, and comfort before deciding.</p>
-            </details>
-            <details class="faq-item reveal delay-2">
-              <summary>Do you offer financing or delivery?</summary>
-              <p>Yes — financing and delivery are available. Replace the exact financing terms, delivery area details, and setup availability before launch.</p>
-            </details>
-            <details class="faq-item reveal">
-              <summary>What areas do you serve?</summary>
-              <p>We serve Cypress and northwest Houston, with nearby relevance for Tomball, Jersey Village, Katy, and surrounding communities.</p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <!-- FINAL CTA -->
-      <section class="final-cta section">
-        <div class="container">
-          <div class="final-cta-card reveal">
-            <span class="eyebrow">Ready to make the room work better?</span>
-            <h2>Visit Bunkly and make one trip that solves the bedroom decision.</h2>
-            <p>
-              A furniture store that feels more personal than a giant chain and more reliable than guessing
-              online. Replace the placeholder contact details and publish.
-            </p>
-            <div class="hero-actions" style="justify-content:center">
-              <a class="button button-primary button-large" href="tel:+12815550100">📞 Call Placeholder Number</a>
-              <a class="button button-secondary button-large" href="#contact">Get Store Info</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div>
-          <strong>Bunkly</strong>
-          <p>Premium, family-friendly furniture and mattress shopping for Cypress and northwest Houston.</p>
-        </div>
-        <div>
-          <strong>Placeholder contact</strong>
-          <p>Phone: (281) 555-0100</p>
-          <p>Address: 12345 Placeholder Rd, Cypress, TX 77429</p>
-        </div>
-        <div>
-          <strong>Before launch</strong>
-          <p>Replace placeholders for offers, hours, business URL, phone, address, and testimonials.</p>
-        </div>
+      <div class="trust">
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="#ff7a3c"><path d="M12 2l2.9 6.3L22 9.3l-5 4.9 1.2 7L12 17.8 5.8 21.2 7 14.2 2 9.3l7.1-1z"/></svg> 4.9/5 from 1,200+ jobs</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="#3ddc84"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2l-1.5-1.5z"/></svg> Licensed &amp; Insured</div>
+        <div><svg width="18" height="18" viewBox="0 0 24 24" fill="#3ddc84"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19.2 20 8.2l-1.5-1.5z"/></svg> Same-Day Service</div>
       </div>
-    </footer>
+    </div>
 
-    <a class="sticky-cta" href="tel:+12815550100" aria-label="Call Bunkly">
-      <span>📞 Call us</span>
-      <strong>(281) 555-0100</strong>
-    </a>
+    <!-- LEAD FORM -->
+    <div class="lead-card" id="quote">
+      <h3>Get a Free Quote</h3>
+      <p class="small">Tell us what you need — a local pro replies fast. No obligation.</p>
+      <form id="leadForm">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="John Smith" required />
+        </div>
+        <div class="field">
+          <label>Phone</label>
+          <input type="tel" name="phone" placeholder="(832) 555-0100" required />
+        </div>
+        <div class="field">
+          <label>Service Needed</label>
+          <select name="service" required>
+            <option value="" disabled selected>Choose a service…</option>
+            <option>Appliance Repair</option>
+            <option>Electrical Services</option>
+            <option>Home Decoration</option>
+            <option>Plumbing</option>
+            <option>HVAC / AC &amp; Heating</option>
+            <option>Handyman</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Briefly describe the job</label>
+          <textarea name="message" rows="2" placeholder="e.g. fridge not cooling, need a same-day visit"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Request My Free Quote</button>
+        <p class="lead-note">🔒 Your info is private. We never spam.</p>
+      </form>
+    </div>
+  </div>
+</section>
 
-    <script src="./script.js"></script>
-  </body>
+<!-- SERVICES -->
+<section class="block" id="services">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Our Services</span>
+      <h2>One Place for All Your Home Needs</h2>
+      <p>Hand-picked, background-checked professionals across the most-requested home services.</p>
+    </div>
+    <div class="grid">
+      <div class="svc" onclick="pick('Appliance Repair')">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 6h6M9 10h6"/></svg></div>
+        <h4>Appliance Repair</h4>
+        <p>Refrigerators, washers, dryers, ovens &amp; dishwashers — fixed fast by certified techs.</p>
+        <span class="more">Get a quote →</span>
+      </div>
+      <div class="svc" onclick="pick('Electrical Services')">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div>
+        <h4>Electrical Services</h4>
+        <p>Wiring, panels, outlets, lighting &amp; safety inspections by licensed electricians.</p>
+        <span class="more">Get a quote →</span>
+      </div>
+      <div class="svc" onclick="pick('Home Decoration')">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></div>
+        <h4>Home Decoration</h4>
+        <p>Interior styling, painting, accent walls &amp; finishing touches that transform rooms.</p>
+        <span class="more">Get a quote →</span>
+      </div>
+      <div class="svc" onclick="pick('Plumbing')">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 2v6a5 5 0 0010 0V2"/><path d="M12 13v9"/></svg></div>
+        <h4>Plumbing</h4>
+        <p>Leaks, clogs, water heaters &amp; fixture installs — clean, reliable, on time.</p>
+        <span class="more">Get a quote →</span>
+      </div>
+      <div class="svc" onclick="pick('HVAC / AC &amp; Heating')">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+        <h4>HVAC — AC &amp; Heating</h4>
+        <p>Tune-ups, repairs &amp; installs to keep your home comfortable all year.</p>
+        <span class="more">Get a quote →</span>
+      </div>
+      <div class="svc" onclick="pick('Handyman')">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 7l3 3-9 9-3-3z"/><path d="M14 7l3-3 3 3-3 3z"/></svg></div>
+        <h4>Handyman</h4>
+        <p>Mounting, assembly, repairs &amp; the to-do list you never get to. One trusted pro.</p>
+        <span class="more">Get a quote →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="block" id="how" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Simple &amp; Fast</span>
+      <h2>How It Works</h2>
+      <p>From request to done in three easy steps.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Tell Us What You Need</h4><p>Fill the quick form or call. Describe the job in 30 seconds.</p></div>
+      <div class="step"><div class="n">2</div><h4>Get Matched Fast</h4><p>We connect you with a vetted, available local pro — often same day.</p></div>
+      <div class="step"><div class="n">3</div><h4>Job Done Right</h4><p>Your pro arrives, fixes it, and you only pay for work you approve.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="block" id="why">
+  <div class="wrap">
+    <div class="why">
+      <div class="item"><h3>1,200+</h3><p>Jobs completed for happy homeowners</p></div>
+      <div class="item"><h3>4.9★</h3><p>Average customer rating</p></div>
+      <div class="item"><h3>&lt;15 min</h3><p>Average response time</p></div>
+      <div class="item"><h3>100%</h3><p>Licensed, insured &amp; vetted pros</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="block" id="reviews" style="background:#fff;border-top:1px solid var(--line)">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Reviews</span>
+      <h2>Homeowners Love HomeHero</h2>
+    </div>
+    <div class="quotes">
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>"My fridge died on a Sunday. Booked in the morning, fixed by afternoon. Honest pricing, super professional."</p>
+        <div class="who"><div class="av">SM</div><div><b>Sarah M.</b><span>Sugar Land, TX</span></div></div>
+      </div>
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>"The electrician explained everything and fixed our panel safely. Best home-service experience I've had."</p>
+        <div class="who"><div class="av">DR</div><div><b>David R.</b><span>Katy, TX</span></div></div>
+      </div>
+      <div class="q">
+        <div class="stars">★★★★★</div>
+        <p>"They redecorated our living room and it looks like a magazine. Smooth from quote to finish."</p>
+        <div class="who"><div class="av">AL</div><div><b>Aisha L.</b><span>Houston, TX</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<section class="block">
+  <div class="wrap">
+    <div class="cta-strip">
+      <h2>Ready to Get Started?</h2>
+      <p>Get a free, no-obligation quote from a trusted local pro today.</p>
+      <a href="#quote" class="btn">Get My Free Quote →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="foot-logo"><span class="mark" style="width:32px;height:32px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--accent));display:grid;place-items:center">⚡</span> HomeHero</div>
+        <p style="font-size:14px;max-width:280px">Your one call for trusted home services across Houston and surrounding areas.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <a href="#services">Appliance Repair</a>
+        <a href="#services">Electrical</a>
+        <a href="#services">Home Decoration</a>
+        <a href="#services">Plumbing &amp; HVAC</a>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <a href="#how">How It Works</a>
+        <a href="#why">Why Us</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#quote">Get a Quote</a>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <a href="tel:+18329999999">📞 (832) 999-9999</a>
+        <a href="mailto:hello@homehero.com">✉️ hello@homehero.com</a>
+        <a href="#">🕘 Mon–Sun, 7am–9pm</a>
+        <a href="#">📍 Houston, TX</a>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© <span id="yr"></span> HomeHero. All rights reserved.</span>
+      <span>Licensed &amp; Insured • Serving Greater Houston</span>
+    </div>
+  </div>
+</footer>
+
+<div class="floating"><a href="tel:+18329999999">📞 Call Now</a></div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  // mobile menu
+  document.getElementById('burger').addEventListener('click',function(){
+    document.getElementById('menu').classList.toggle('open');
+  });
+  document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('open')));
+  // service card -> prefill form
+  function pick(s){
+    var sel=document.querySelector('select[name=service]');
+    for(var i=0;i<sel.options.length;i++){if(sel.options[i].text===s){sel.selectedIndex=i;break;}}
+    document.getElementById('quote').scrollIntoView({behavior:'smooth'});
+  }
+  // form submit (placeholder — wire to email/CRM later)
+  document.getElementById('leadForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target;
+    alert('Thank you, '+f.name.value+'! A local pro will contact you shortly about your '+ (f.service.value||'request') +'.');
+    f.reset();
+  });
+</script>
+</body>
 </html>

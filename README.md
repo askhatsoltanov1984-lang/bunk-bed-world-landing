@@ -1,27 +1,13 @@
-# Bunkly Landing Page
+# HomeHero — Local Home Services Lead-Gen Landing
 
-Static single-page landing page for **Bunkly** in Cypress / northwest Houston, built with plain `HTML`, `CSS`, and `JavaScript`.
+Single-page, self-contained lead-generation landing for local home-service pros
+(appliance repair, electrical, home decoration, plumbing, HVAC, handyman).
 
-## What was built
+- Clean modern UI (Plus Jakarta Sans, navy + blue/amber), fully responsive
+- Lead-capture form in the hero, click-to-call, sticky mobile call button
+- Service cards prefill the quote form; how-it-works, trust stats, reviews, FAQ
+- One file (`index.html`) — inline CSS + JS, no build step, hosts anywhere
 
-- Conversion-focused single-page layout with: hero, benefits, featured categories, why choose us, testimonials, financing/delivery/help, FAQ, final CTA, footer
-- Mobile-first responsive design with sticky call CTA and subtle reveal animations
-- Local SEO basics: title, meta description, Open Graph tags, and `schema.org` LocalBusiness JSON-LD
-- Polished nonfunctional contact form UI ready to wire into email, CRM, or form handling later
-
-## Placeholders Aziz must replace
-
-- Business phone number: `(281) 555-0100`
-- Business address: `12345 Placeholder Rd, Cypress, TX 77429`
-- Website URL and Open Graph image URL in [`index.html`](/Users/askhatsoltanov/.openclaw-dan/workspace/bunk-bed-world-landing/index.html)
-- Placeholder offer copy in the hero showcase card
-- Placeholder testimonials
-- Business hours and any exact financing / delivery details if different
-
-## Local preview
-
-Open `index.html` directly in a browser, or run a local static server such as:
-
-```bash
-python3 -m http.server 8000 --bind 127.0.0.1
-```
+## Wire up leads
+The form currently shows a confirmation. Connect it to email/Telegram/CRM
+(Formspree, Web3Forms, etc.) to start receiving leads.
