@@ -1,22 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Sub-Zero Appliance Repair in Houston, TX — Same-Day | Zbroo</title>
-<meta name="description" content="Expert Sub-Zero appliance repair in Houston & Texas. Refrigerators, washers, dryers, ovens & dishwashers. Vetted, licensed pros, same-day service, free quotes."/>
-<meta name="theme-color" content="#06241A"/>
-<link rel="canonical" href="https://zbroo.com/sub-zero-appliance-repair/"/>
-<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large"/>
-<meta property="og:title" content="Sub-Zero Appliance Repair in Houston, TX — Same-Day | Zbroo"/>
-<meta property="og:description" content="Expert Sub-Zero appliance repair in Houston & Texas. Refrigerators, washers, dryers, ovens & dishwashers. Vetted, licensed pros, same-day service, free quotes."/>
-<meta property="og:url" content="https://zbroo.com/sub-zero-appliance-repair/"/>
-<meta property="og:type" content="website"/>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":["LocalBusiness","HomeAndConstructionBusiness"],"@id":"https://zbroo.com/#business","name":"Zbroo","url":"https://zbroo.com/sub-zero-appliance-repair/","telephone":"+1-281-936-9141","email":"aaron@zbroo.com","priceRange":"$$","areaServed":{"@type":"State","name":"Texas"}},{"@type":"Service","name":"Sub-Zero Appliance Repair","serviceType":"Appliance Repair","brand":{"@type":"Brand","name":"Sub-Zero"},"provider":{"@id":"https://zbroo.com/#business"},"areaServed":{"@type":"State","name":"Texas"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://zbroo.com/"},{"@type":"ListItem","position":2,"name":"Sub-Zero Appliance Repair","item":"https://zbroo.com/sub-zero-appliance-repair/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do you repair Sub-Zero appliances same-day?","acceptedAnswer":{"@type":"Answer","text":"Yes — in most cases we match you with a Sub-Zero-experienced technician for same-day or next-day service across Houston and Texas."}},{"@type":"Question","name":"Which Sub-Zero appliances do you fix?","acceptedAnswer":{"@type":"Answer","text":"Sub-Zero refrigerators, freezers, washers, dryers, dishwashers, ovens, ranges, stoves and microwaves."}},{"@type":"Question","name":"Do you use genuine parts?","acceptedAnswer":{"@type":"Answer","text":"Our pros use manufacturer-grade or OEM parts where appropriate, backed by a parts and labor warranty."}},{"@type":"Question","name":"Are your technicians qualified?","acceptedAnswer":{"@type":"Answer","text":"Yes — every pro is vetted, licensed, insured and background-checked."}}]}]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
-<style>
+#!/usr/bin/env python3
+"""
+Regenerate the 17 Zbroo subpages (9 city + 8 brand) in the
+"Variant C — Houston green neon" identity.
+
+Preserves verbatim from each existing page:
+  <title>, meta description, canonical, robots, geo tags, og tags,
+  and the ENTIRE JSON-LD script content.
+Re-extracts the page copy (eyebrow, h1, hero paragraph, body section,
+cards, FAQ Q&A, nearby links) and re-renders it in the new design.
+"""
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+
+DIRS = [
+    "appliance-repair-houston", "appliance-repair-sugar-land",
+    "appliance-repair-katy", "appliance-repair-cypress",
+    "appliance-repair-spring", "appliance-repair-the-woodlands",
+    "appliance-repair-pearland", "appliance-repair-pasadena",
+    "appliance-repair-conroe",
+    "samsung-appliance-repair", "lg-appliance-repair",
+    "whirlpool-appliance-repair", "ge-appliance-repair",
+    "bosch-appliance-repair", "sub-zero-appliance-repair",
+    "kitchenaid-appliance-repair", "maytag-appliance-repair",
+]
+
+
+def grab(pattern, html, flags=re.S):
+    m = re.search(pattern, html, flags)
+    return m.group(1) if m else None
+
+
+def extract(html):
+    d = {}
+    d["title"] = grab(r"<title>(.*?)</title>", html)
+    d["description"] = grab(r'<meta name="description" content="(.*?)"', html)
+    d["canonical"] = grab(r'<link rel="canonical" href="(.*?)"', html)
+    d["robots"] = grab(r'<meta name="robots" content="(.*?)"', html)
+    d["geo_region"] = grab(r'<meta name="geo.region" content="(.*?)"', html)
+    d["geo_placename"] = grab(r'<meta name="geo.placename" content="(.*?)"', html)
+    d["og_title"] = grab(r'<meta property="og:title" content="(.*?)"', html)
+    d["og_description"] = grab(r'<meta property="og:description" content="(.*?)"', html)
+    d["og_url"] = grab(r'<meta property="og:url" content="(.*?)"', html)
+    d["og_type"] = grab(r'<meta property="og:type" content="(.*?)"', html)
+    d["jsonld"] = grab(r'<script type="application/ld\+json">(.*?)</script>', html)
+
+    # hero copy
+    d["eyebrow"] = grab(r'<span class="eyebrow">(.*?)</span>', html)
+    d["h1"] = grab(r"<h1>(.*?)</h1>", html)
+    d["hero_p"] = grab(r"<h1>.*?</h1><p>(.*?)</p>", html)
+
+    # main body section
+    d["body_h2"] = grab(r'<section><div class="wrap"><h2>(.*?)</h2>', html)
+    d["body_ps"] = re.findall(r'<p class="body">(.*?)</p>', html, re.S)
+    d["cards"] = re.findall(
+        r'<div class="card"><h3>(.*?)</h3><p>(.*?)</p></div>', html, re.S)
+
+    # FAQ
+    d["faq_h2"] = grab(r"<h2>(FAQ[^<]*)</h2>", html)
+    d["faq"] = re.findall(
+        r"<details><summary>(.*?)</summary><p>(.*?)</p></details>", html, re.S)
+
+    # nearby links
+    near = grab(r'<h2>((?:We also serve|Other brands)[^<]*)</h2><div class="chips">(.*?)</div>',
+                html)
+    m = re.search(r'<h2>((?:We also serve|Other brands)[^<]*)</h2><div class="chips">(.*?)</div>',
+                  html, re.S)
+    if m:
+        d["near_h2"] = m.group(1)
+        d["near_links"] = re.findall(r'<a href="(.*?)">(.*?)</a>', m.group(2))
+    else:
+        d["near_h2"], d["near_links"] = None, []
+    return d
+
+
+CSS = """
 :root{
   --forest:#06241A;--ink:#131C16;--neon:#16C172;--paper:#F3F5EF;
   --slate:#6B776D;--g900:#084F30;--g700:#0C8B51;--g200:#97E6BD;
@@ -80,7 +141,7 @@ p.body b,p.body strong{color:var(--paper)}
 .faq-item p{color:var(--slate);padding:0 0 20px;max-width:70ch}
 .link-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));border-top:1px solid var(--rule);border-left:1px solid var(--rule)}
 .link-grid a{font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:18px;display:flex;align-items:center;justify-content:space-between;gap:10px;transition:color .2s,background .2s}
-.link-grid a::after{content:"\2192";color:var(--g900);transition:color .2s,transform .25s}
+.link-grid a::after{content:"\\2192";color:var(--g900);transition:color .2s,transform .25s}
 .link-grid a:hover{color:var(--neon);background:rgba(22,193,114,.04)}
 .link-grid a:hover::after{color:var(--neon);transform:translateX(4px)}
 .cta-band{background:var(--ink);border-top:1px solid var(--rule);text-align:center;padding:clamp(56px,9vh,104px) var(--pad)}
@@ -101,6 +162,57 @@ footer{background:var(--forest);border-top:1px solid var(--rule);padding:clamp(4
 @media (max-width:760px){.open-sign,.head-phone{display:none}.sticky-call{display:block}.hero-ctas .btn{width:100%;text-align:center}.foot-grid{grid-template-columns:1fr}.link-grid{grid-template-columns:1fr 1fr}}
 @media (max-width:460px){.link-grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}}
+""".strip()
+
+
+def render(d, slug):
+    geo = ""
+    if d["geo_region"]:
+        geo += f'<meta name="geo.region" content="{d["geo_region"]}"/>'
+    if d["geo_placename"]:
+        geo += f'<meta name="geo.placename" content="{d["geo_placename"]}"/>'
+
+    # hero h1: light up the city / brand part if pattern matches
+    h1 = d["h1"]
+    m = re.match(r"^(.*?\bin\b)(.*)$", h1)
+    if m and m.group(2).strip():
+        h1_html = f'{m.group(1)}<span class="nw">{m.group(2)}</span>'
+    else:
+        h1_html = h1
+
+    body_ps = "\n".join(f'<p class="body">{p}</p>' for p in d["body_ps"])
+
+    rows = "\n".join(
+        f'''<div class="row"><span class="row-idx">/0{i+1}</span><h3>{h}</h3><p>{p}</p></div>'''
+        for i, (h, p) in enumerate(d["cards"]))
+
+    faq = "\n".join(
+        f'''<details class="faq-item"><summary>{q} <span class="plus">+</span></summary><p>{a}</p></details>'''
+        for q, a in d["faq"])
+
+    near = "\n".join(f'<a href="{href}">{label}</a>'
+                     for href, label in d["near_links"])
+
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>{d["title"]}</title>
+<meta name="description" content="{d["description"]}"/>
+<meta name="theme-color" content="#06241A"/>
+<link rel="canonical" href="{d["canonical"]}"/>
+<meta name="robots" content="{d["robots"]}"/>
+{geo}<meta property="og:title" content="{d["og_title"]}"/>
+<meta property="og:description" content="{d["og_description"]}"/>
+<meta property="og:url" content="{d["og_url"]}"/>
+<meta property="og:type" content="{d["og_type"]}"/>
+<script type="application/ld+json">{d["jsonld"]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+{CSS}
 </style>
 </head>
 <body>
@@ -116,9 +228,9 @@ footer{background:var(--forest);border-top:1px solid var(--rule);padding:clamp(4
 </header>
 
 <section class="hero">
-  <p class="micro">Sub-Zero Specialists · Houston, TX <span class="tick">&middot;</span> LICENSED &amp; INSURED</p>
-  <h1>Sub-Zero Appliance Repair in<span class="nw"> Houston, TX</span></h1>
-  <p>Same-day Sub-Zero appliance repair from vetted, licensed pros. Refrigerators, washers, dryers, ovens, dishwashers and more — with a free upfront quote and labor warranty.</p>
+  <p class="micro">{d["eyebrow"]} <span class="tick">&middot;</span> LICENSED &amp; INSURED</p>
+  <h1>{h1_html}</h1>
+  <p>{d["hero_p"]}</p>
   <div class="hero-ctas">
     <a class="btn btn-solid" href="/#quote">Get a free quote</a>
     <a class="btn btn-outline" href="tel:+12819369141">Call (281) 936-9141</a>
@@ -128,42 +240,31 @@ footer{background:var(--forest);border-top:1px solid var(--rule);padding:clamp(4
 <section class="sec">
   <div class="sec-head">
     <span class="sec-index">01</span>
-    <h2 class="sec-title">Expert Sub-Zero repair across Houston & Texas</h2>
+    <h2 class="sec-title">{d["body_h2"]}</h2>
   </div>
-  <p class="body">Sub-Zero appliances are built to last — but when one fails, you want a technician who knows the brand. Zbroo connects you with vetted, Sub-Zero-experienced pros serving Houston, Sugar Land, Katy, Cypress, Spring, The Woodlands and the wider Texas metro, usually same or next day.</p>
-<p class="body">We repair Sub-Zero refrigerators, freezers, washers, dryers, dishwashers, ovens, ranges, stoves and microwaves — with upfront pricing and a warranty on every job.</p>
+  {body_ps}
   <div class="rows">
-<div class="row"><span class="row-idx">/01</span><h3>Sub-Zero expertise</h3><p>Technicians experienced with Sub-Zero models.</p></div>
-<div class="row"><span class="row-idx">/02</span><h3>Same-day service</h3><p>Fast scheduling across Houston & Texas.</p></div>
-<div class="row"><span class="row-idx">/03</span><h3>Warranty-backed</h3><p>Parts & labor warranty on repairs.</p></div>
+{rows}
   </div>
 </section>
 
 <section class="sec" style="background:var(--ink)">
   <div class="sec-head">
     <span class="sec-index">02</span>
-    <h2 class="sec-title">FAQ — Sub-Zero Appliance Repair</h2>
+    <h2 class="sec-title">{d["faq_h2"]}</h2>
   </div>
   <div class="faq-wrap">
-<details class="faq-item"><summary>Do you repair Sub-Zero appliances same-day? <span class="plus">+</span></summary><p>Yes — in most cases we match you with a Sub-Zero-experienced technician for same-day or next-day service across Houston and Texas.</p></details>
-<details class="faq-item"><summary>Which Sub-Zero appliances do you fix? <span class="plus">+</span></summary><p>Sub-Zero refrigerators, freezers, washers, dryers, dishwashers, ovens, ranges, stoves and microwaves.</p></details>
-<details class="faq-item"><summary>Do you use genuine parts? <span class="plus">+</span></summary><p>Our pros use manufacturer-grade or OEM parts where appropriate, backed by a parts and labor warranty.</p></details>
-<details class="faq-item"><summary>Are your technicians qualified? <span class="plus">+</span></summary><p>Yes — every pro is vetted, licensed, insured and background-checked.</p></details>
+{faq}
   </div>
 </section>
 
 <section class="sec">
   <div class="sec-head">
     <span class="sec-index">03</span>
-    <h2 class="sec-title">Other brands we repair</h2>
+    <h2 class="sec-title">{d["near_h2"]}</h2>
   </div>
-  <nav class="link-grid" aria-label="Other brands we repair">
-<a href="/samsung-appliance-repair/">Samsung</a>
-<a href="/lg-appliance-repair/">LG</a>
-<a href="/whirlpool-appliance-repair/">Whirlpool</a>
-<a href="/ge-appliance-repair/">GE</a>
-<a href="/bosch-appliance-repair/">Bosch</a>
-<a href="/kitchenaid-appliance-repair/">KitchenAid</a>
+  <nav class="link-grid" aria-label="{d["near_h2"]}">
+{near}
   </nav>
 </section>
 
@@ -201,3 +302,38 @@ footer{background:var(--forest);border-top:1px solid var(--rule);padding:clamp(4
 <script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
 </body>
 </html>
+"""
+
+
+def main():
+    ok = 0
+    for slug in DIRS:
+        path = ROOT / slug / "index.html"
+        html = path.read_text(encoding="utf-8")
+        d = extract(html)
+
+        missing = [k for k in ("title", "description", "canonical", "robots",
+                               "og_title", "og_description", "og_url", "og_type",
+                               "jsonld", "eyebrow", "h1", "hero_p", "body_h2",
+                               "faq_h2", "near_h2")
+                   if not d.get(k)]
+        if missing or len(d["cards"]) != 3 or len(d["faq"]) < 4 or not d["near_links"]:
+            sys.exit(f"EXTRACTION FAILED for {slug}: missing={missing} "
+                     f"cards={len(d['cards'])} faq={len(d['faq'])} "
+                     f"near={len(d['near_links'])}")
+
+        # validate JSON-LD before re-embedding
+        json.loads(d["jsonld"])
+
+        out = render(d, slug)
+        # confirm JSON-LD survived verbatim
+        assert d["jsonld"] in out, f"JSON-LD not embedded verbatim in {slug}"
+        path.write_text(out, encoding="utf-8")
+        ok += 1
+        print(f"OK  {slug}  (jsonld {len(d['jsonld'])} bytes, "
+              f"{len(d['faq'])} faq, {len(d['near_links'])} nearby links)")
+    print(f"\n{ok}/{len(DIRS)} subpages regenerated.")
+
+
+if __name__ == "__main__":
+    main()
