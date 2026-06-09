@@ -1,0 +1,33 @@
+# Zbroo
+
+> Zbroo connects Houston and Texas homeowners with vetted, licensed, same-day local pros for appliance repair, electrical, plumbing, HVAC, home decoration and handyman work. Free quotes; licensed and insured professionals.
+
+## About
+- Brand: Zbroo
+- Service area: Houston, TX and Greater Houston / Texas — including Sugar Land, Katy, Cypress, Spring, The Woodlands, Pearland, Pasadena and Conroe
+- Hours: 7:00am–9:00pm, 7 days a week
+- Phone: (832) 999-9999  [PLACEHOLDER — replace with real number]
+- Email: hello@zbroo.com
+- Website: https://zbroo.com
+
+## Services
+- Appliance Repair — refrigerators, washers, dryers, dishwashers, ovens, ranges, stoves, microwaves, freezers; all major brands (Samsung, LG, Whirlpool, GE, Bosch, Sub-Zero)
+- Electrical Services — wiring, panels, outlets, lighting, safety inspections (licensed electricians)
+- Plumbing — leaks, clogs, water heaters, fixture installs
+- HVAC — AC & heating tune-ups, repair, installation
+- Home Decoration — interior styling, painting, accent walls, finishing touches
+- Handyman — mounting, assembly, repairs, to-do lists
+
+## Key facts
+- Same-day or next-day service in most cases
+- Pros are vetted, licensed, insured and background-checked
+- Free upfront quotes; service-call fee often waived with a repair
+- Labor warranty, typically 90 days, plus manufacturer parts warranty
+
+## Links
+- Home: https://zbroo.com/
+- Get a free quote: https://zbroo.com/#quote
+- Services: https://zbroo.com/#services
+- How it works: https://zbroo.com/#how
+- Reviews: https://zbroo.com/#reviews
+- FAQ: https://zbroo.com/#faq
