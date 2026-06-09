@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#06241A" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@400;500;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Karla:wght@400;500;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet" />
 <link rel="canonical" href="https://zbroo.com/" />
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
 <meta name="geo.region" content="US-TX" />
@@ -44,12 +44,9 @@
         { "@type": "City", "name": "Houston" },
         { "@type": "City", "name": "Sugar Land" },
         { "@type": "City", "name": "Katy" },
-        { "@type": "City", "name": "Cypress" },
-        { "@type": "City", "name": "Spring" },
-        { "@type": "City", "name": "The Woodlands" },
-        { "@type": "City", "name": "Pearland" },
-        { "@type": "City", "name": "Pasadena" },
-        { "@type": "City", "name": "Conroe" },
+        { "@type": "City", "name": "Richmond" },
+        { "@type": "City", "name": "Rosenberg" },
+        { "@type": "City", "name": "Missouri City" },
         { "@type": "State", "name": "Texas" }
       ],
       "openingHoursSpecification": [
@@ -83,7 +80,7 @@
         { "@type": "Question", "name": "How much does appliance repair cost in Houston?", "acceptedAnswer": { "@type": "Answer", "text": "Most repairs start with a service-call diagnostic, which is often waived when you proceed with the repair. Final cost depends on the appliance and parts, and you always get an upfront quote before any work begins." } },
         { "@type": "Question", "name": "Which appliances and brands do you cover?", "acceptedAnswer": { "@type": "Answer", "text": "Refrigerators, washers, dryers, dishwashers, ovens, ranges, stoves, microwaves and freezers — all major brands including Samsung, LG, Whirlpool, GE, Bosch and Sub-Zero." } },
         { "@type": "Question", "name": "Are the pros licensed and insured?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every pro in the Zbroo network is vetted, licensed, insured and background-checked." } },
-        { "@type": "Question", "name": "What areas in Texas do you serve?", "acceptedAnswer": { "@type": "Answer", "text": "Houston and the greater metro: Sugar Land, Katy, Cypress, Spring, The Woodlands, Pearland, Pasadena, Conroe and nearby communities." } },
+        { "@type": "Question", "name": "What areas in Texas do you serve?", "acceptedAnswer": { "@type": "Answer", "text": "Sugar Land, Katy, Richmond, Rosenberg, Missouri City and the southwest Greater Houston area — with more cities coming soon." } },
         { "@type": "Question", "name": "Is there a warranty on repairs?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — repairs come with a labor warranty, typically 90 days, plus any applicable manufacturer parts warranty." } }
       ]
     }
@@ -109,7 +106,7 @@
   --glow-md:0 0 8px rgba(22,193,114,.65), 0 0 24px rgba(22,193,114,.38), 0 0 64px rgba(22,193,114,.18);
   --disp:'Anton',Impact,'Arial Narrow',sans-serif;
   --body:'Karla',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
-  --mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
+  --mono:'Courier Prime','Courier New',monospace;
   --pad:clamp(20px,5vw,72px);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -172,7 +169,7 @@ img{max-width:100%}
 
 /* ---------- mono microlabel ---------- */
 .micro{
-  font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.14em;
+  font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.10em;
   text-transform:uppercase;color:var(--slate);
 }
 .micro .tick{color:var(--g700)}
@@ -209,7 +206,7 @@ header{
 }
 .head-right{display:flex;align-items:center;gap:22px}
 .open-sign{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.10em;
   color:var(--neon);
   border:1px solid rgba(22,193,114,.45);
   border-radius:2px;
@@ -312,7 +309,7 @@ header{
 .hero-ctas .btn{padding:15px 28px;font-size:15px}
 .live-row{
   display:flex;align-items:center;gap:11px;
-  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  font-family:var(--mono);font-size:12px;letter-spacing:.07em;
   color:var(--slate);text-transform:uppercase;
 }
 .live-dot{
@@ -345,7 +342,7 @@ header{
 form{display:grid;gap:16px}
 .field label{
   display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;
-  letter-spacing:.14em;text-transform:uppercase;
+  letter-spacing:.10em;text-transform:uppercase;
   color:var(--slate);margin-bottom:8px;
 }
 .field input,.field select,.field textarea{
@@ -414,7 +411,7 @@ section.sec{padding:clamp(64px,10vh,120px) var(--pad)}
   border-bottom:1px solid var(--rule);
   padding-bottom:18px;
 }
-.sec-index{font-family:var(--mono);font-size:13px;color:var(--g700);letter-spacing:.15em}
+.sec-index{font-family:var(--mono);font-size:13px;color:var(--g700);letter-spacing:.11em}
 .sec-title{
   font-family:var(--disp);font-weight:400;text-transform:uppercase;
   font-size:clamp(26px,3.4vw,46px);letter-spacing:.01em;
@@ -446,7 +443,7 @@ section.sec{padding:clamp(64px,10vh,120px) var(--pad)}
 }
 .svc-name .flag{
   font-family:var(--mono);font-weight:400;font-size:10px;
-  letter-spacing:.16em;color:var(--neon);
+  letter-spacing:.12em;color:var(--neon);
   vertical-align:super;margin-left:10px;
   border:1px solid rgba(22,193,114,.4);border-radius:2px;
   padding:2px 7px;
@@ -501,7 +498,7 @@ section.sec{padding:clamp(64px,10vh,120px) var(--pad)}
   font-variant-numeric:tabular-nums;
 }
 .stat-num .small{font-size:.42em;letter-spacing:0}
-.stat-label{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.stat-label{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--slate)}
 .quotes{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:clamp(28px,4vw,64px);
@@ -546,7 +543,7 @@ section.sec{padding:clamp(64px,10vh,120px) var(--pad)}
   border-top:1px solid var(--rule);border-left:1px solid var(--rule);
 }
 .link-grid a{
-  font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.14em;
+  font-family:var(--mono);font-weight:400;font-size:12px;letter-spacing:.10em;
   text-transform:uppercase;color:var(--paper);
   border-right:1px solid var(--rule);border-bottom:1px solid var(--rule);
   padding:18px 18px;
@@ -590,7 +587,7 @@ footer{
 .foot-tag{margin-top:14px;color:var(--slate);font-weight:400;font-size:15px;max-width:30ch}
 .foot-col h4{
   font-family:var(--mono);font-size:10.5px;font-weight:400;
-  letter-spacing:.18em;text-transform:uppercase;
+  letter-spacing:.14em;text-transform:uppercase;
   color:var(--g700);margin-bottom:18px;
 }
 .foot-cities{
@@ -612,7 +609,7 @@ footer{
   border-top:1px solid var(--rule);
   padding-top:24px;
   display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;
   color:var(--slate);text-transform:uppercase;
 }
 
@@ -620,7 +617,7 @@ footer{
 .sticky-call{
   position:fixed;right:16px;bottom:16px;z-index:1100;
   display:none;
-  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;
   background:var(--neon);color:var(--ink);font-weight:500;
   padding:14px 20px;border-radius:3px;
   box-shadow:0 0 18px rgba(22,193,114,.55),0 0 48px rgba(22,193,114,.25);
@@ -913,7 +910,7 @@ footer{
     </details>
     <details class="faq-item reveal">
       <summary>What areas in Texas do you serve? <span class="plus">+</span></summary>
-      <p>Houston and the greater metro: Sugar Land, Katy, Cypress, Spring, The Woodlands, Pearland, Pasadena, Conroe and nearby communities.</p>
+      <p>Sugar Land, Katy, Richmond, Rosenberg, Missouri City and the southwest Greater Houston area &mdash; with more cities coming soon.</p>
     </details>
     <details class="faq-item reveal">
       <summary>Is there a warranty on repairs? <span class="plus">+</span></summary>
@@ -934,12 +931,9 @@ footer{
     <a href="/appliance-repair-houston/">Houston</a>
     <a href="/appliance-repair-sugar-land/">Sugar Land</a>
     <a href="/appliance-repair-katy/">Katy</a>
-    <a href="/appliance-repair-cypress/">Cypress</a>
-    <a href="/appliance-repair-spring/">Spring</a>
-    <a href="/appliance-repair-the-woodlands/">The Woodlands</a>
-    <a href="/appliance-repair-pearland/">Pearland</a>
-    <a href="/appliance-repair-pasadena/">Pasadena</a>
-    <a href="/appliance-repair-conroe/">Conroe</a>
+    <a href="/appliance-repair-richmond/">Richmond</a>
+    <a href="/appliance-repair-rosenberg/">Rosenberg</a>
+    <a href="/appliance-repair-missouri-city/">Missouri City</a>
   </nav>
   <div class="grid-gap"></div>
   <p class="micro reveal" style="margin-bottom:18px">BRANDS WE REPAIR</p>
@@ -978,12 +972,9 @@ footer{
         <li><a href="/appliance-repair-houston/">Houston</a></li>
         <li><a href="/appliance-repair-sugar-land/">Sugar Land</a></li>
         <li><a href="/appliance-repair-katy/">Katy</a></li>
-        <li><a href="/appliance-repair-cypress/">Cypress</a></li>
-        <li><a href="/appliance-repair-spring/">Spring</a></li>
-        <li><a href="/appliance-repair-the-woodlands/">The Woodlands</a></li>
-        <li><a href="/appliance-repair-pearland/">Pearland</a></li>
-        <li><a href="/appliance-repair-pasadena/">Pasadena</a></li>
-        <li><a href="/appliance-repair-conroe/">Conroe</a></li>
+        <li><a href="/appliance-repair-richmond/">Richmond</a></li>
+        <li><a href="/appliance-repair-rosenberg/">Rosenberg</a></li>
+        <li><a href="/appliance-repair-missouri-city/">Missouri City</a></li>
       </ul>
     </div>
     <div class="foot-col foot-contact">
@@ -1150,5 +1141,6 @@ footer{
     }
   })();
 </script>
+<script src="/assets/chat.js" defer></script>
 </body>
 </html>
