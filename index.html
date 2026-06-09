@@ -274,6 +274,7 @@
       <h3>Get a Free Quote</h3>
       <p class="small">Tell us what you need — a local pro replies fast. No obligation.</p>
       <form id="leadForm">
+        <input type="text" name="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0" />
         <div class="field">
           <label>Full Name</label>
           <input type="text" name="name" placeholder="John Smith" required />
@@ -547,12 +548,19 @@
     for(var i=0;i<sel.options.length;i++){if(sel.options[i].text===s){sel.selectedIndex=i;break;}}
     document.getElementById('quote').scrollIntoView({behavior:'smooth'});
   }
-  // form submit (placeholder — wire to email/CRM later)
-  document.getElementById('leadForm').addEventListener('submit',function(e){
+  // form submit -> Zbroo CRM (never lose a lead: queue + retry on failure)
+  var ZB_API='https://api.zbroo.com/api/leads', ZB_Q='zbroo_lead_queue';
+  function zbQ(){try{return JSON.parse(localStorage.getItem(ZB_Q)||'[]')}catch(e){return[]}}
+  function zbSet(a){try{localStorage.setItem(ZB_Q,JSON.stringify(a))}catch(e){}}
+  async function zbSend(p){var r=await fetch(ZB_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(p)});if(!r.ok)throw new Error('bad');return r.json()}
+  async function zbFlush(){var q=zbQ();if(!q.length)return;var keep=[];for(var i=0;i<q.length;i++){try{await zbSend(q[i])}catch(e){keep.push(q[i])}}zbSet(keep)}
+  window.addEventListener('online',zbFlush);document.addEventListener('DOMContentLoaded',zbFlush);
+  document.getElementById('leadForm').addEventListener('submit',async function(e){
     e.preventDefault();
     var f=e.target;
-    alert('Thank you, '+f.name.value+'! A local pro will contact you shortly about your '+ (f.service.value||'request') +'.');
-    f.reset();
+    var p={name:f.name.value,phone:f.phone.value,service:f.service.value,message:f.message.value,city:(f.dataset&&f.dataset.city)||'',source:location.pathname,hp:f.hp?f.hp.value:''};
+    try{ await zbSend(p); alert('Thank you, '+p.name+'! A local pro will contact you shortly about your '+(p.service||'request')+'.'); f.reset(); }
+    catch(err){ var q=zbQ(); q.push(p); zbSet(q); alert('Thanks '+p.name+'! We saved your request and will reach out shortly.'); f.reset(); }
   });
 </script>
 </body>
