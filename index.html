@@ -236,6 +236,24 @@ header{
   position:relative;
   padding:clamp(56px,9vh,110px) var(--pad) clamp(50px,8vh,96px);
   overflow:hidden;
+  /* Brand photo: the zbroo van at night. Layered gradients keep type AA-readable
+     and blend the shot into the forest canvas at the edges. */
+  background-image:
+    linear-gradient(180deg, rgba(6,36,26,.78) 0%, rgba(6,36,26,.42) 34%, rgba(6,36,26,.66) 72%, var(--forest) 100%),
+    linear-gradient(100deg, rgba(6,36,26,.88) 0%, rgba(6,36,26,.45) 48%, rgba(6,36,26,.22) 100%),
+    url('/assets/van-hero.jpg');
+  background-size:cover,cover,cover;
+  background-position:center,center,center 64%;
+  background-repeat:no-repeat;
+}
+@media (max-width:760px){
+  .hero{
+    background-image:
+      linear-gradient(180deg, rgba(6,36,26,.86) 0%, rgba(6,36,26,.62) 40%, rgba(6,36,26,.82) 78%, var(--forest) 100%),
+      url('/assets/van-hero.jpg');
+    background-size:cover,cover;
+    background-position:center,68% 60%;
+  }
 }
 .spotlight{
   position:absolute;inset:0;pointer-events:none;z-index:0;
