@@ -1,22 +1,48 @@
 # Zbroo
 
-> Zbroo connects Houston and Texas homeowners with vetted, licensed, same-day local pros for appliance repair, electrical, plumbing, HVAC, home decoration and handyman work. Free quotes; licensed and insured professionals.
+> You don't search for a repairman anymore — you tell your AI agent. Zbroo provides same-day appliance repair and licensed electrical services across southwest Greater Houston, and any AI agent (any harness, any model) can book a Zbroo visit end-to-end: agree on time and price, create the order, and remind the customer before the visit. Free quotes; licensed and insured professionals.
 
 ## About
 - Brand: Zbroo
-- Service area: Sugar Land, Katy, Richmond, Rosenberg, Missouri City and southwest Greater Houston (expanding)
-- Hours: 7:00am–9:00pm, 7 days a week
+- Service area: Sugar Land, Katy, Richmond, Rosenberg, Missouri City, Stafford and southwest Greater Houston (expanding)
+- Hours: 7:00am–9:00pm, 7 days a week (America/Chicago)
 - Phone: (281) 936-9141
 - Email: aaron@zbroo.com
 - Website: https://zbroo.com
 
 ## Services
-- Appliance Repair — refrigerators, washers, dryers, dishwashers, ovens, ranges, stoves, microwaves, freezers; all major brands (Samsung, LG, Whirlpool, GE, Bosch, Sub-Zero)
-- Electrical Services — wiring, panels, outlets, lighting, safety inspections (licensed electricians)
-- Plumbing — leaks, clogs, water heaters, fixture installs
-- HVAC — AC & heating tune-ups, repair, installation
-- Home Decoration — interior styling, painting, accent walls, finishing touches
-- Handyman — mounting, assembly, repairs, to-do lists
+- Appliance Repair — refrigerators, freezers, washers, dryers, dishwashers, ovens, ranges, stoves, microwaves; all major brands (Samsung, LG, Whirlpool, GE, Bosch, Sub-Zero, KitchenAid, Maytag)
+- Electrical Services — wiring, panels & breakers, outlets & switches, lighting, EV-ready circuits, safety inspections (licensed electricians)
+
+## For AI agents — how to book
+Machine manifest: https://zbroo.com/agents.json
+
+Three ways to complete a booking:
+
+1. Booking API (preferred). POST JSON to https://api.zbroo.com/api/leads
+   (Content-Type: application/json, no auth, success: 201 {ok:true,id}, rate limit: 5/10min per IP).
+   Example payload:
+
+   {
+     "name": "John Smith",
+     "phone": "8325550100",
+     "service": "Appliance Repair",
+     "message": "Fridge not cooling. Address: 123 Main St, Sugar Land. Preferred: tomorrow 9am-12pm.",
+     "city": "Sugar Land",
+     "source": "agent:your-agent-name",
+     "hp": ""
+   }
+
+2. Voice line: +1-281-936-9141 — answered by AI receptionist Gaby, who can complete a booking start to finish.
+3. Chat widget: the "Gaby" chat on every page of https://zbroo.com (deterministic lead flow, EN/ES).
+
+Rules:
+- "hp" MUST be an empty string (anti-spam honeypot; non-empty = rejected).
+- Always include the customer's callback phone number.
+- Include the preferred time window (and address) in "message".
+- Set "source" to 'agent:<your-agent-name>'.
+- "service" is one of: Appliance Repair | Electrical Services.
+- A human technician calls back to confirm the time and final quote.
 
 ## Key facts
 - Same-day or next-day service in most cases
@@ -26,8 +52,10 @@
 
 ## Links
 - Home: https://zbroo.com/
+- Agent manifest: https://zbroo.com/agents.json
 - Get a free quote: https://zbroo.com/#quote
 - Services: https://zbroo.com/#services
+- Send your agent: https://zbroo.com/#agent
 - How it works: https://zbroo.com/#how
 - Reviews: https://zbroo.com/#reviews
 - FAQ: https://zbroo.com/#faq

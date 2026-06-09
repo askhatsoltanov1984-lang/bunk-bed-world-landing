@@ -61,11 +61,8 @@
   var OPTIONS = {
     services: [
       { value: "Appliance Repair", en: "Appliance Repair", es: "Reparación de electrodomésticos" },
-      { value: "Electrical", en: "Electrical", es: "Electricidad" },
-      { value: "Plumbing", en: "Plumbing", es: "Plomería" },
-      { value: "HVAC", en: "HVAC", es: "Aire y calefacción" },
-      { value: "Handyman", en: "Handyman", es: "Mantenimiento general" },
-      { value: "Home Decoration", en: "Home Decoration", es: "Decoración del hogar" }
+      { value: "Electrical Services", en: "Electrical Services", es: "Electricidad" },
+      { value: "Other", en: "Something else", es: "Otra cosa" }
     ],
     cities: [
       { value: "Sugar Land", en: "Sugar Land", es: "Sugar Land" },
@@ -73,6 +70,7 @@
       { value: "Richmond", en: "Richmond", es: "Richmond" },
       { value: "Rosenberg", en: "Rosenberg", es: "Rosenberg" },
       { value: "Missouri City", en: "Missouri City", es: "Missouri City" },
+      { value: "Stafford", en: "Stafford", es: "Stafford" },
       { value: "Other", en: "Other", es: "Otra" }
     ],
     times: [

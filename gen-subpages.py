@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Generate the 14 Zbroo subpages (6 city + 8 brand) in the
+Generate the 15 Zbroo subpages (7 city + 8 brand) in the
 "Variant C — Houston green neon" identity.
 
-City pages (Houston, Sugar Land, Katy, Richmond, Rosenberg, Missouri City)
-are generated fully from the CITY payload builder below — head metadata,
+City pages (Houston, Sugar Land, Katy, Richmond, Rosenberg, Missouri City,
+Stafford) are generated fully from the CITY payload builder below — head metadata,
 JSON-LD graph (LocalBusiness + Service + BreadcrumbList + city-localized
 FAQPage) and page copy are all templated per city.
 
@@ -20,7 +20,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 
 # ----------------------------------------------------------------------
-# Service area — the 6 current cities (more coming later).
+# Service area — the 7 current cities (more coming later).
 # ----------------------------------------------------------------------
 CITIES = [
     ("Houston",       "appliance-repair-houston"),
@@ -29,6 +29,7 @@ CITIES = [
     ("Richmond",      "appliance-repair-richmond"),
     ("Rosenberg",     "appliance-repair-rosenberg"),
     ("Missouri City", "appliance-repair-missouri-city"),
+    ("Stafford",      "appliance-repair-stafford"),
 ]
 
 BRAND_DIRS = [
@@ -41,7 +42,9 @@ BRAND_DIRS = [
 # Stale service-area phrases in brand-page copy -> current city list.
 COPY_FIXES = [
     ("Houston, Sugar Land, Katy, Cypress, Spring, The Woodlands and the wider Texas metro",
-     "Houston, Sugar Land, Katy, Richmond, Rosenberg, Missouri City and the wider Texas metro"),
+     "Houston, Sugar Land, Katy, Richmond, Rosenberg, Missouri City, Stafford and the wider Texas metro"),
+    ("Houston, Sugar Land, Katy, Richmond, Rosenberg, Missouri City and the wider Texas metro",
+     "Houston, Sugar Land, Katy, Richmond, Rosenberg, Missouri City, Stafford and the wider Texas metro"),
 ]
 
 
@@ -423,7 +426,7 @@ def render(d):
   <div class="foot-grid">
     <div>
       <div class="logo foot-logo">zbroo<span class="dot">.</span></div>
-      <p class="foot-tag">Same-day appliance repair and trusted home services across Houston and Texas. Licensed &amp; insured pros.</p>
+      <p class="foot-tag">Same-day appliance repair and licensed electrical services across southwest Greater Houston. Licensed &amp; insured pros.</p>
     </div>
     <div class="foot-col foot-contact">
       <h4>Contact</h4>

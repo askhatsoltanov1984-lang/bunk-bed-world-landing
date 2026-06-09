@@ -1,0 +1,34 @@
+{
+  "name": "Zbroo",
+  "description": "Same-day appliance repair and licensed electrical services in southwest Greater Houston, TX. AI agents can complete a booking end-to-end via the open booking API below or the AI-answered phone line.",
+  "version": "1.0",
+  "services": ["Appliance Repair", "Electrical Services"],
+  "service_area": ["Houston", "Sugar Land", "Katy", "Richmond", "Rosenberg", "Missouri City", "Stafford"],
+  "hours": "Mon-Sun 07:00-21:00 America/Chicago",
+  "phone_voice_agent": "+12819369141",
+  "phone_voice_agent_note": "Answered by an AI receptionist (Gaby) that can complete bookings start to finish.",
+  "booking_api": {
+    "endpoint": "https://api.zbroo.com/api/leads",
+    "method": "POST",
+    "content_type": "application/json",
+    "auth": "none",
+    "fields": {
+      "name": "string, required",
+      "phone": "string, required, customer callback number",
+      "service": "Appliance Repair | Electrical Services",
+      "message": "string — describe the problem; include address and preferred time window",
+      "city": "string",
+      "source": "string — set to 'agent:<your-agent-name>'",
+      "hp": "string — MUST be empty"
+    },
+    "success": "201 {ok:true,id}",
+    "rate_limit": "5/10min per IP",
+    "notes": [
+      "always include customer phone",
+      "a human technician calls back to confirm time and final quote",
+      "include preferred time in message"
+    ]
+  },
+  "languages": ["en", "es"],
+  "llms_txt": "https://zbroo.com/llms.txt"
+}

@@ -1,3 +1,4 @@
+# AI agents: see /llms.txt and /agents.json for booking API
 User-agent: *
 Allow: /
 
