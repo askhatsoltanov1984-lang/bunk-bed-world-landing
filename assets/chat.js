@@ -1,10 +1,14 @@
 /* ============================================================
-   Zbroo chat widget — "Gaby" (v1, deterministic lead flow)
+   Zbroo chat widget — "Aaron" (v2, LLM brain + scripted fallback)
    Self-contained vanilla JS. No dependencies.
 
-   The conversation logic lives in ONE function: brain().
-   v2 will swap brain() for an LLM-backed implementation —
-   everything else (rendering, i18n, queueing) stays the same.
+   LLM MODE (default): every user message goes to POST /api/chat
+   (Anthropic-powered "Aaron"); the server can create the lead
+   directly via its create_lead tool ({reply, lead_created}).
+
+   FALLBACK MODE: if /api/chat is offline (503/502/429/network),
+   the widget silently switches to the deterministic v1 flow in
+   brain() for the rest of the session — same UI, no error shown.
    ============================================================ */
 (function () {
   "use strict";
@@ -12,22 +16,27 @@
   window.__zbrooChat = true;
 
   var API = "https://api.zbroo.com/api/leads";
+  var API_CHAT = "https://api.zbroo.com/api/chat";
   var QUEUE_KEY = "zbroo_lead_queue";          // shared with the lead form
-  var STATE_KEY = "zbroo_chat_v1";
-  var TYPE_MS = 600;
+  var STATE_KEY = "zbroo_chat_v2";
+  var TYPE_MS = 600;          // scripted typing-dots duration
+  var MIN_REPLY_MS = 1200;    // LLM replies: hold typing dots at least this long
+  var CHAT_TIMEOUT_MS = 25000;
 
   /* ---------------- i18n ---------------- */
   var I18N = {
     en: {
-      open: "Chat with Gaby",
+      open: "Chat with Aaron",
       close: "Close chat",
-      title: "Gaby — Zbroo",
+      title: "Aaron from Zbroo",
       tagline: "TYPICALLY REPLIES IN SECONDS",
       placeholder: "Type your message…",
       send: "Send",
       sendAria: "Send message",
       langAria: "Cambiar a español",
-      greet: "Hi! I'm Gaby from Zbroo. What do you need help with today?",
+      greet: "Hi! I'm Aaron from Zbroo. Tell me what broke — or ask me anything.",
+      leadNote: "✅ Request created — our technician will reach out shortly.",
+      afterLead: "Your request is already in — if you need anything else, just call us at (281) 936-9141 (7am–9pm daily).",
       askProblem: "What's going on with it?",
       askName: "Got it. What's your name?",
       askPhone: "Best phone number to reach you?",
@@ -37,15 +46,17 @@
       success: "You're all set, {name}! Our technician will reach out shortly. 💚"
     },
     es: {
-      open: "Chatear con Gaby",
+      open: "Chatear con Aaron",
       close: "Cerrar chat",
-      title: "Gaby — Zbroo",
+      title: "Aaron de Zbroo",
       tagline: "RESPONDE EN SEGUNDOS",
       placeholder: "Escribe tu mensaje…",
       send: "Enviar",
       sendAria: "Enviar mensaje",
       langAria: "Switch to English",
-      greet: "¡Hola! Soy Gaby de Zbroo. ¿En qué te podemos ayudar hoy?",
+      greet: "¡Hola! Soy Aaron de Zbroo. Cuéntame qué se descompuso — o pregúntame lo que quieras.",
+      leadNote: "✅ Solicitud creada — nuestro técnico se pondrá en contacto contigo en un momento.",
+      afterLead: "Tu solicitud ya quedó registrada — si necesitas algo más, márcanos al (281) 936-9141 (7am a 9pm, todos los días).",
       askProblem: "Cuéntame, ¿qué está fallando?",
       askName: "Perfecto. ¿Cuál es tu nombre?",
       askPhone: "¿A qué número de teléfono te podemos marcar?",
@@ -59,6 +70,12 @@
   /* Option lists. `value` is the canonical English payload value;
      labels are what the visitor sees. */
   var OPTIONS = {
+    /* quick-reply shortcuts under the greeting (LLM mode) */
+    quickServices: [
+      { value: "Appliance Repair", en: "Appliance Repair", es: "Reparación de electrodomésticos" },
+      { value: "Electrical Services", en: "Electrical Services", es: "Electricidad" }
+    ],
+    /* full lists for the deterministic fallback flow */
     services: [
       { value: "Appliance Repair", en: "Appliance Repair", es: "Reparación de electrodomésticos" },
       { value: "Electrical Services", en: "Electrical Services", es: "Electricidad" },
@@ -99,12 +116,12 @@
   }
 
   /* ============================================================
-     brain() — THE conversation logic (deterministic v1).
+     brain() — the DETERMINISTIC fallback logic (v1, kept intact).
+     Used only after the LLM endpoint fails (mode === "scripted").
      Input : state, input ({type:'init'} | {type:'text'|'option', value})
      Output: { save:{field,value}?, next:step, say:[{key,args?}],
                ask:{kind:'options',optionsKey}|{kind:'text',inputType}|null,
                submit:true? }
-     Swap this single function for an LLM brain later.
      ============================================================ */
   function brain(st, input) {
     switch (st.step) {
@@ -179,14 +196,23 @@
   var state = load() || {
     lang: "en",
     open: false,
-    step: "start",
     started: false,
+    mode: "llm",        // "llm" | "scripted" (sticky for the session once fallen back)
+    step: "start",      // pointer for the scripted flow
     data: {},
-    log: [],          // {who:'g'|'u', key?, args?, opt?:{listKey,value}, text?}
-    ask: null
+    history: [],        // [{role:'user'|'assistant', content}] — sent to /api/chat
+    log: [],            // {who:'g'|'u', key?, args?, opt?:{listKey,value}, text?, note?}
+    ask: null,
+    leadCreated: false
   };
+  /* defensive defaults (older persisted shapes) */
+  if (!state.mode) state.mode = "llm";
+  if (!state.history) state.history = [];
+  if (!state.data) state.data = {};
+  if (!state.log) state.log = [];
 
   function save() {
+    state.history = state.history.slice(-40); // bound storage
     try { sessionStorage.setItem(STATE_KEY, JSON.stringify(state)); } catch (e) {}
   }
   function load() {
@@ -211,9 +237,10 @@
     ".zb-lang:hover,.zb-x:hover{color:#16C172;border-color:#16C172}" +
     ".zb-x{font-size:14px;line-height:1;padding:5px 9px}" +
     ".zb-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}" +
-    ".zb-msg{max-width:84%;padding:10px 13px;border-radius:4px;font-size:14.5px;line-height:1.45;animation:zbIn .25s ease both}" +
+    ".zb-msg{max-width:84%;padding:10px 13px;border-radius:4px;font-size:14.5px;line-height:1.45;animation:zbIn .25s ease both;white-space:pre-wrap}" +
     ".zb-msg.zb-g{align-self:flex-start;background:#131C16;border:1px solid rgba(12,139,81,.3)}" +
     ".zb-msg.zb-u{align-self:flex-end;background:#16C172;color:#06241A;font-weight:700}" +
+    ".zb-msg.zb-note{align-self:flex-start;background:transparent;border:1px dashed rgba(22,193,114,.4);color:#9FB8A8;font-family:'Courier Prime','Courier New',monospace;font-size:12px;letter-spacing:.02em;padding:7px 11px}" +
     "@keyframes zbIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}" +
     ".zb-typing{display:flex;gap:4px;align-items:center;padding:12px 14px}" +
     ".zb-typing i{width:6px;height:6px;border-radius:50%;background:#16C172;animation:zbDot 1s ease-in-out infinite}" +
@@ -257,7 +284,7 @@
   panel.innerHTML =
     '<div class="zb-head">' +
     '  <div class="zb-head-txt">' +
-    '    <div class="zb-head-title">Gaby — Zbroo<span class="zb-dot">.</span></div>' +
+    '    <div class="zb-head-title"></div>' +
     '    <div class="zb-head-tag"></div>' +
     "  </div>" +
     '  <button type="button" class="zb-lang"></button>' +
@@ -270,6 +297,7 @@
     "</form>";
   document.body.appendChild(panel);
 
+  var titleEl = panel.querySelector(".zb-head-title");
   var tagEl = panel.querySelector(".zb-head-tag");
   var langBtn = panel.querySelector(".zb-lang");
   var closeBtn = panel.querySelector(".zb-x");
@@ -287,7 +315,7 @@
 
   function addBubble(m) {
     var el = document.createElement("div");
-    el.className = "zb-msg " + (m.who === "g" ? "zb-g" : "zb-u");
+    el.className = "zb-msg " + (m.who === "g" ? "zb-g" : "zb-u") + (m.note ? " zb-note" : "");
     el.textContent = msgText(m);
     msgsEl.appendChild(el);
     msgsEl.scrollTop = msgsEl.scrollHeight;
@@ -305,8 +333,15 @@
       b.className = "zb-opt";
       b.textContent = o[state.lang] || o.en;
       b.addEventListener("click", function () {
-        handleInput({ type: "option", value: o.value },
-                    { who: "u", opt: { listKey: ask.optionsKey, value: o.value } });
+        if (busy) return;
+        if (state.mode === "llm") {
+          // Quick-reply shortcut: send the visible label as a user message.
+          state.ask = null;
+          handleLlmText(o[state.lang] || o.en);
+        } else {
+          handleScripted({ type: "option", value: o.value },
+                         { who: "u", opt: { listKey: ask.optionsKey, value: o.value } });
+        }
       });
       wrap.appendChild(b);
     });
@@ -319,18 +354,29 @@
   }
 
   function syncBar() {
-    var textMode = state.ask && state.ask.kind === "text";
-    inputEl.disabled = !textMode;
-    sendBtn.disabled = !textMode;
-    inputEl.type = textMode && state.ask.inputType === "tel" ? "tel" : "text";
-    inputEl.setAttribute("inputmode",
-      textMode && state.ask.inputType === "tel" ? "tel" : "text");
+    var enabled, tel = false;
+    if (state.mode === "llm") {
+      enabled = true; // free text from message one — always typeable
+    } else {
+      enabled = !!(state.ask && state.ask.kind === "text");
+      tel = enabled && state.ask.inputType === "tel";
+    }
+    inputEl.disabled = !enabled;
+    sendBtn.disabled = !enabled || busy;
+    inputEl.type = tel ? "tel" : "text";
+    inputEl.setAttribute("inputmode", tel ? "tel" : "text");
     inputEl.placeholder = t("placeholder");
     sendBtn.textContent = t("send");
     sendBtn.setAttribute("aria-label", t("sendAria"));
   }
 
   function syncChrome() {
+    titleEl.innerHTML = "";
+    titleEl.appendChild(document.createTextNode(t("title")));
+    var dot = document.createElement("span");
+    dot.className = "zb-dot";
+    dot.textContent = ".";
+    titleEl.appendChild(dot);
     tagEl.textContent = t("tagline");
     langBtn.textContent = state.lang === "en" ? "ES" : "EN";
     langBtn.setAttribute("aria-label", t("langAria"));
@@ -355,14 +401,17 @@
     msgsEl.scrollTop = msgsEl.scrollHeight;
     return el;
   }
+  function removeEl(el) {
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+  }
 
-  /* Play Gaby messages sequentially with a typing indicator. */
+  /* Play scripted messages sequentially with a typing indicator. */
   function playSay(says, done) {
     if (!says.length) { done(); return; }
     var m = { who: "g", key: says[0].key, args: says[0].args };
     var typing = showTyping();
     setTimeout(function () {
-      typing.parentNode.removeChild(typing);
+      removeEl(typing);
       state.log.push(m);
       addBubble(m);
       save();
@@ -370,9 +419,148 @@
     }, TYPE_MS);
   }
 
-  /* ---------------- flow driver ---------------- */
+  /* ============================================================
+     LLM MODE
+     ============================================================ */
   var busy = false;
-  function handleInput(input, echo) {
+
+  function askBrainApi(onOk, onFail) {
+    var ctrl = window.AbortController ? new AbortController() : null;
+    var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, CHAT_TIMEOUT_MS) : null;
+    fetch(API_CHAT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        messages: state.history.slice(-20),
+        lang: state.lang,
+        page: location.pathname
+      }),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (r) {
+      if (timer) clearTimeout(timer);
+      if (!r.ok) throw new Error("status " + r.status); // 503 brain_offline / 502 brain_error / 429 …
+      return r.json();
+    }).then(function (d) {
+      if (!d || typeof d.reply !== "string") throw new Error("bad payload");
+      onOk(d);
+    }).catch(function () {
+      if (timer) clearTimeout(timer);
+      onFail();
+    });
+  }
+
+  function handleLlmText(text) {
+    if (busy) return;
+    busy = true;
+    removeOptions();
+    state.ask = null;
+    var echo = { who: "u", text: text };
+    state.log.push(echo);
+    addBubble(echo);
+    state.history.push({ role: "user", content: text.slice(0, 1000) });
+    save();
+    syncBar();
+
+    var typing = showTyping();
+    var t0 = Date.now();
+
+    askBrainApi(function (d) {
+      /* feel human: hold the typing dots so the total wait is ≥ MIN_REPLY_MS */
+      var wait = Math.max(0, MIN_REPLY_MS - (Date.now() - t0));
+      setTimeout(function () {
+        removeEl(typing);
+        var m = { who: "g", text: d.reply };
+        state.log.push(m);
+        addBubble(m);
+        state.history.push({ role: "assistant", content: d.reply.slice(0, 1000) });
+        if (d.lead_created && !state.leadCreated) {
+          state.leadCreated = true;
+          var note = { who: "g", note: true, key: "leadNote" };
+          state.log.push(note);
+          addBubble(note);
+        }
+        busy = false;
+        save();
+        syncBar();
+        inputEl.focus();
+      }, wait);
+    }, function () {
+      var wait = Math.max(0, MIN_REPLY_MS - (Date.now() - t0));
+      setTimeout(function () {
+        removeEl(typing);
+        busy = false;
+        fallbackToScripted(text); // seamless — just the next scripted question
+      }, wait);
+    });
+  }
+
+  /* ============================================================
+     FALLBACK — switch to the deterministic flow for the session
+     ============================================================ */
+  function matchServiceLabel(text) {
+    var low = (text || "").trim().toLowerCase();
+    var list = OPTIONS.quickServices;
+    for (var i = 0; i < list.length; i++) {
+      if (low === list[i].value.toLowerCase() ||
+          low === list[i].en.toLowerCase() ||
+          low === list[i].es.toLowerCase()) return list[i].value;
+    }
+    return null;
+  }
+  function detectService(text) {
+    return /electr|outlet|panel|breaker|wir|switch|light|luz|cable|contacto|apag/i.test(text || "")
+      ? "Electrical Services" : "Appliance Repair";
+  }
+
+  function fallbackToScripted(pendingText) {
+    state.mode = "scripted";
+    save();
+    syncBar();
+
+    if (state.leadCreated) {
+      // Lead is already in — no need to restart the funnel.
+      busy = true;
+      playSay([{ key: "afterLead" }], function () {
+        state.ask = null;
+        busy = false;
+        syncBar();
+        save();
+      });
+      return;
+    }
+
+    busy = true;
+    var svc = matchServiceLabel(pendingText);
+    if (svc) {
+      // The unanswered message was a service pick — continue with the problem question.
+      state.data.service = svc;
+      state.step = "problem";
+      playSay([{ key: "askProblem" }], function () {
+        state.ask = { kind: "text", inputType: "text" };
+        finishScriptedTurn();
+      });
+    } else {
+      // Free text: treat it as the problem description, infer the service.
+      state.data.service = detectService(pendingText);
+      state.data.problem = pendingText;
+      state.step = "name";
+      playSay([{ key: "askName" }], function () {
+        state.ask = { kind: "text", inputType: "text" };
+        finishScriptedTurn();
+      });
+    }
+  }
+
+  function finishScriptedTurn() {
+    renderOptions(state.ask);
+    syncBar();
+    save();
+    busy = false;
+    if (state.ask && state.ask.kind === "text") inputEl.focus();
+  }
+
+  /* scripted flow driver (v1 behavior, unchanged) */
+  function handleScripted(input, echo) {
     if (busy) return;
     busy = true;
     removeOptions();
@@ -389,18 +577,36 @@
     if (act.submit) submitLead(state.data);
     playSay(act.say || [], function () {
       state.ask = act.ask || null;
-      renderOptions(state.ask);
-      syncBar();
-      save();
-      busy = false;
-      if (state.ask && state.ask.kind === "text") inputEl.focus();
+      finishScriptedTurn();
     });
   }
 
+  /* ---------------- start (greeting) ---------------- */
   function start() {
     if (state.started) return;
     state.started = true;
-    handleInput({ type: "init" });
+    if (state.mode !== "llm") {
+      // (only possible via odd persisted state) — run the v1 opener
+      handleScripted({ type: "init" });
+      return;
+    }
+    busy = true;
+    state.step = "service"; // scripted pointer, in case we fall back later
+    var typing = showTyping();
+    setTimeout(function () {
+      removeEl(typing);
+      var greet = { who: "g", key: "greet" };
+      state.log.push(greet);
+      addBubble(greet);
+      state.history.push({ role: "assistant", content: t("greet") });
+      // quick-reply shortcuts — typing works at the same time
+      state.ask = { kind: "options", optionsKey: "quickServices" };
+      renderOptions(state.ask);
+      busy = false;
+      save();
+      syncBar();
+      inputEl.focus();
+    }, TYPE_MS);
   }
 
   /* ---------------- open / close ---------------- */
@@ -409,7 +615,7 @@
     panel.classList.add("zb-open");
     save();
     start();
-    var f = state.ask && state.ask.kind === "text" ? inputEl : firstFocusable();
+    var f = !inputEl.disabled ? inputEl : firstFocusable();
     if (f) f.focus();
   }
   function closePanel() {
@@ -433,9 +639,15 @@
   barEl.addEventListener("submit", function (e) {
     e.preventDefault();
     var v = inputEl.value.trim();
-    if (!v || !state.ask || state.ask.kind !== "text") return;
+    if (!v || busy) return;
+    if (state.mode === "llm") {
+      inputEl.value = "";
+      handleLlmText(v);
+      return;
+    }
+    if (!state.ask || state.ask.kind !== "text") return;
     inputEl.value = "";
-    handleInput({ type: "text", value: v }, { who: "u", text: v });
+    handleScripted({ type: "text", value: v }, { who: "u", text: v });
   });
 
   /* ---------------- a11y: Esc + basic focus trap ---------------- */

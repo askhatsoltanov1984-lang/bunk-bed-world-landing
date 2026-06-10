@@ -34,7 +34,7 @@ Three ways to complete a booking:
    }
 
 2. Voice line: +1-281-936-9141 — answered by AI receptionist Gaby, who can complete a booking start to finish.
-3. Chat widget: the "Gaby" chat on every page of https://zbroo.com (deterministic lead flow, EN/ES).
+3. Chat widget: the "Aaron" chat on every page of https://zbroo.com — an AI assistant (EN/ES) that answers questions and can also complete a booking end-to-end in chat.
 
 Rules:
 - "hp" MUST be an empty string (anti-spam honeypot; non-empty = rejected).
